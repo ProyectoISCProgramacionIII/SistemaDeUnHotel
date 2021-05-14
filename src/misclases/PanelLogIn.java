@@ -45,7 +45,7 @@ public class PanelLogIn extends JPanel{
     }
     
     private void initComponents(){
-           
+        
           try {
                font=new File("src/fonts/Alba.ttf");
               fuente=Font.createFont(Font.TRUETYPE_FONT, font);

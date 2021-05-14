@@ -19,6 +19,8 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import misclases.Fondo;
+import misclases.Hotel;
+
 
 /**
  *
@@ -30,11 +32,10 @@ public class Portada extends javax.swing.JFrame  {
      * Creates new form Portada
      */
     public Portada() {
-        
+            new Hotel();
             initComponents();
             this.setTitle("PORTADA");
-            
-           
+                      
             Fondo fondo=new Fondo();
             jPanelFondo.add(fondo,BorderLayout.CENTER);
              jPanelFondo.repaint();
@@ -92,6 +93,7 @@ public class Portada extends javax.swing.JFrame  {
     }//GEN-LAST:event_jButtonContinuarMouseReleased
 
     private void jButtonContinuarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonContinuarMouseEntered
+        System.out.println(Hotel.habitaciones);
         jButtonContinuar.setBackground(Color.PINK);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonContinuarMouseEntered
