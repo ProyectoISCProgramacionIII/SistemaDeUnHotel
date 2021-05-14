@@ -216,13 +216,13 @@ public class PanelMenuPrincipal extends JPanel{
             g.drawImage(alegria, (dimensiones.width/2)+50, 100, 200, 200, null);
             g.setFont(sizeFont_2);
             g.setColor(Color.BLACK);
-            g.drawString("HOTEL ALEGRIA", (dimensiones.width/2)-390, 80);
+            g.drawString("HOTEL WOLFSBURG", (dimensiones.width/2)-505, 80);
             
             jButtonCheckIn.setBounds((dimensiones.width/2)-60,(dimensiones.height)-300, 150, 50);
             jButtonCheckOut.setBounds((dimensiones.width/2)-60, (dimensiones.height)-230, 150, 50);
-             jButtonConsultas.setBounds((dimensiones.width/2)-60, (dimensiones.height)-160, 150, 50);
-             jButtonCambios.setBounds((dimensiones.width/2)-60, (dimensiones.height)-90, 150, 50);
-               jButtonRegresar.setBounds(10, (dimensiones.height)-60, 150, 50);
+            jButtonConsultas.setBounds((dimensiones.width/2)-60, (dimensiones.height)-160, 150, 50);
+            jButtonCambios.setBounds((dimensiones.width/2)-60, (dimensiones.height)-90, 150, 50);
+            jButtonRegresar.setBounds(10, (dimensiones.height)-60, 150, 50);
            
             this.setOpaque(false);
             super.paint(g);
