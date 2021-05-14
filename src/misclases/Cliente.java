@@ -2,8 +2,8 @@
 package misclases;
 
 public class Cliente {
-    private String nomHuesped,cdOrigen,fechaIng,fechaSal,nHuespedes,nPiso,tOcupantes,huespExtra;
-    private int numHab,piso,totalOcup,perExt=0,limHuesped;
+    private String nomHuesped,cdOrigen,fechaIng,fechaSal;
+    ;
 
     public Cliente() {
     }
@@ -13,10 +13,6 @@ public class Cliente {
         this.cdOrigen = cdOrigen;
         this.fechaIng = fechaIng;
         this.fechaSal = fechaSal;
-        this.nHuespedes = nHuespedes;
-        this.nPiso = nPiso;
-        this.tOcupantes = tOcupantes;
-        this.huespExtra = huespExtra;
     }
 
     public String getNomHuesped() {
@@ -49,78 +45,6 @@ public class Cliente {
 
     public void setFechaSal(String fechaSal) {
         this.fechaSal = fechaSal;
-    }
-
-    public String getnHuespedes() {
-        return nHuespedes;
-    }
-
-    public void setnHuespedes(String nHuespedes) {
-        this.nHuespedes = nHuespedes;
-    }
-
-    public String getnPiso() {
-        return nPiso;
-    }
-
-    public void setnPiso(String nPiso) {
-        this.nPiso = nPiso;
-    }
-
-    public String gettOcupantes() {
-        return tOcupantes;
-    }
-
-    public void settOcupantes(String tOcupantes) {
-        this.tOcupantes = tOcupantes;
-    }
-
-    public String getHuespExtra() {
-        return huespExtra;
-    }
-
-    public void setHuespExtra(String huespExtra) {
-        this.huespExtra = huespExtra;
-    }
-
-    public int getNumHab() {
-        return numHab;
-    }
-
-    public void setNumHab(int numHab) {
-        this.numHab = numHab;
-    }
-
-    public int getPiso() {
-        return piso;
-    }
-
-    public void setPiso(int piso) {
-        this.piso = piso;
-    }
-
-    public int getTotalOcup() {
-        return totalOcup;
-    }
-
-    public void setTotalOcup(int totalOcup) {
-        this.totalOcup = totalOcup;
-    }
-
-    public int getPerExt() {
-        return perExt;
-    }
-
-    public void setPerExt(int perExt) {
-        this.perExt = perExt;
-    }
-
-    public int getLimHuesped() {
-        return limHuesped;
-    }
-
-    public void setLimHuesped(int limHuesped) {
-        this.limHuesped = limHuesped;
     }
  
 }
