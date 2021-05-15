@@ -10,10 +10,12 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -33,6 +35,7 @@ public class PanelLogIn extends JPanel{
     private JPasswordField jPasswordFieldContrasena;
     private JLabel jLabelUsuario,jLabelContrasena,jLabelNombreHot,jLabelSlogan;
     private JButton jButtonIniciar;
+    private BufferedImage escudo;
     private ActionListener act;
     public PanelLogIn(){
         
@@ -45,7 +48,7 @@ public class PanelLogIn extends JPanel{
     }
     
     private void initComponents(){
-           
+        
         try {
             font=new File("src/fonts/Alba.ttf");
             fuente=Font.createFont(Font.TRUETYPE_FONT, font);
@@ -56,6 +59,8 @@ public class PanelLogIn extends JPanel{
             font_2= new File("src/fonts/Shelter.ttf");
             fuente3=Font.createFont(Font.TRUETYPE_FONT, font_2);
             sizeFont_4=fuente3.deriveFont(45f);
+            
+            escudo=ImageIO.read(new File("src/imagenes/hotel.jpg"));
         } catch (FontFormatException ex) {
          
         } catch (IOException ex) {
@@ -66,7 +71,7 @@ public class PanelLogIn extends JPanel{
         
         jLabelNombreHot=new JLabel("HOTEL WOLFSBURG");
         jLabelNombreHot.setFont(sizeFont_3);
-        jLabelNombreHot.setForeground(Color.MAGENTA);
+        jLabelNombreHot.setForeground(Color.ORANGE);
         jLabelSlogan=new JLabel('"'+"El Arte De Cumplir Tu Más Altas Expectativas"+'"');
         jLabelSlogan.setFont(sizeFont_4);
         jLabelSlogan.setForeground(Color.red);
@@ -75,12 +80,13 @@ public class PanelLogIn extends JPanel{
         jPasswordFieldContrasena=new  JPasswordField();
         jPasswordFieldContrasena.setBorder(new  BevelBorder(BevelBorder.LOWERED));
         jLabelUsuario=new JLabel("Usuario");
+        jLabelUsuario.setForeground(Color.red);
         jLabelUsuario.setBorder(new  BevelBorder(BevelBorder.LOWERED));
         jLabelUsuario.setFont(sizeFont);
         jLabelContrasena=new JLabel("Contraseña");
+        jLabelContrasena.setForeground(Color.red);
         jLabelContrasena.setBorder(new  BevelBorder(BevelBorder.LOWERED));
         jLabelContrasena.setFont(sizeFont);
-        
         
         jButtonIniciar=new JButton("Iniciar Sesión");
         jButtonIniciar.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -131,15 +137,16 @@ public class PanelLogIn extends JPanel{
       @Override
     public void paint(Graphics g){
         Dimension dimensiones=getSize();
+        g.drawImage(escudo,0, 0, (dimensiones.width), (dimensiones.height), null);
         
-        this.jLabelUsuario.setBounds((dimensiones.width/2)-100,(dimensiones.height/2)-100 , 100, 30);
-        this.jLabelContrasena.setBounds((dimensiones.width/2)+100,(dimensiones.height/2)-100 , 100, 30);
-        this.jTextFieldUsuario.setBounds((dimensiones.width/2)-100,(dimensiones.height/2)-50 , 100, 30);
-        this.jPasswordFieldContrasena.setBounds((dimensiones.width/2)+100,(dimensiones.height/2)-50 , 100, 30);
-        this.jButtonIniciar.setBounds((dimensiones.width/2)-25,(dimensiones.height/2) , 150, 30);
-        this.jLabelNombreHot.setBounds(225,15,570, 90);
-        this.jLabelSlogan.setBounds(220,115, 680, 50);
-//  this.setOpaque(false);
+        this.jLabelUsuario.setBounds((dimensiones.width/2)-150,(dimensiones.height/2)-80 , 100, 30);
+        this.jLabelContrasena.setBounds((dimensiones.width/2)+100,(dimensiones.height/2)-80 , 100, 30);
+        this.jTextFieldUsuario.setBounds((dimensiones.width/2)-150,(dimensiones.height/2)-20 , 100, 30);
+        this.jPasswordFieldContrasena.setBounds((dimensiones.width/2)+100,(dimensiones.height/2)-20 , 100, 30);
+        this.jButtonIniciar.setBounds((dimensiones.width/2)-60,(dimensiones.height/2)+50 , 150, 30);
+        this.jLabelNombreHot.setBounds(150,8,570, 90);
+        this.jLabelSlogan.setBounds(170,(dimensiones.height/2)+220, 680, 50);
+        this.setOpaque(false);
         super.paint(g);
         
     }

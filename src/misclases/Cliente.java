@@ -1,18 +1,24 @@
 
 package misclases;
 
+import java.util.Calendar;
+import java.util.Vector;
+
 public class Cliente {
     private String nomHuesped,cdOrigen,fechaIng,fechaSal;
-    ;
+    private Vector <String> servExtr;
+    private Calendar actual;
 
     public Cliente() {
     }
 
-    public Cliente(String nomHuesped, String cdOrigen, String fechaIng, String fechaSal, String nHuespedes, String nPiso, String tOcupantes, String huespExtra) {
+    public Cliente(String nomHuesped, String cdOrigen, String fechaIng, String fechaSal, Vector<String> servExtr, Calendar actual) {
         this.nomHuesped = nomHuesped;
         this.cdOrigen = cdOrigen;
         this.fechaIng = fechaIng;
         this.fechaSal = fechaSal;
+        this.servExtr = servExtr;
+        this.actual = actual;
     }
 
     public String getNomHuesped() {
@@ -46,5 +52,23 @@ public class Cliente {
     public void setFechaSal(String fechaSal) {
         this.fechaSal = fechaSal;
     }
+
+    public Vector<String> getServExtr() {
+        return servExtr;
+    }
+
+    public void setServExtr(Vector<String> servExtr) {
+        this.servExtr = servExtr;
+    }
+
+    public Calendar getActual() {
+        return actual;
+    }
+
+    public void setActual(Calendar actual) {
+        this.actual = actual;
+    }
+
+    
  
 }
