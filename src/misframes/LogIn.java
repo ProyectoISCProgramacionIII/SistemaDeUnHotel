@@ -22,7 +22,7 @@ public class LogIn extends javax.swing.JFrame {
     public LogIn() {
         initComponents();
         this.getContentPane().add(new PanelLogIn(new EventoCerrar()),BorderLayout.CENTER);
-        this.setSize(1020, 640);
+        this.setSize(900, 600);
         this.setLocationRelativeTo(null);
     }
     

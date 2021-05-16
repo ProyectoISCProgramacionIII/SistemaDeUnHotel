@@ -67,7 +67,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        System.out.println("Hi");
+        //System.out.println("Hi");
         //System.exit(0);
       
 // TODO add your handling code here:

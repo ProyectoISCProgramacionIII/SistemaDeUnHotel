@@ -15,7 +15,7 @@ public class Hotel {
            int piso=0;
            double costo=0;
             for (int i = 0; i < 30; i++) {
-                
+                  if(i==15) num=200;
                 if(i<5 ){
                     tipo=Habitacion.TIPO_1;
                     piso=Habitacion.PISO_1;
@@ -43,9 +43,9 @@ public class Hotel {
                 }
                 
                 
-                habitaciones.add(new Habitacion(false,num,tipo,costo,0,piso));
+                habitaciones.add(new Habitacion(false,num,tipo,costo,0,piso,null));
                 num++;
-                if(num==15) num=200;
+              
             }
             
             

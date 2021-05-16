@@ -93,7 +93,7 @@ public class Portada extends javax.swing.JFrame  {
     }//GEN-LAST:event_jButtonContinuarMouseReleased
 
     private void jButtonContinuarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonContinuarMouseEntered
-        System.out.println(Hotel.habitaciones);
+        //System.out.println(Hotel.habitaciones);
         jButtonContinuar.setBackground(Color.PINK);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonContinuarMouseEntered
