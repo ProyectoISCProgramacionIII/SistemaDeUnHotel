@@ -161,7 +161,7 @@ public class RegClientes extends javax.swing.JFrame {
             this.service.add(this.jCheckBoxServCarro.getText());
         }
         
-        if(1==0){
+        if(1==1){
             
             if(((int)this.jSpinnerTotalHabi.getValue())<=4 && ((int)this.jSpinnerTotalHabi.getValue())>0){
                 if(((int)this.jSpinnerTotalHabi.getValue())<=2){
@@ -261,7 +261,8 @@ public class RegClientes extends javax.swing.JFrame {
             }
         }
         //Cliente(String nomHuesped, String cdOrigen, String fechaIng, String fechaSal, Vector<String> servExtr, Calendar actual)
-        Cliente cliente=new Cliente(nom,cd,fechaIn, fecSal, service,Ingre);
+        Cliente cliente=new Cliente(nom,cd,fechaIn, fecSal, service,Ingre,totOcu);
+        
     }
     
     /**
