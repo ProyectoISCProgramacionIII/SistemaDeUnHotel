@@ -8,17 +8,18 @@ public class Cliente {
     private String nomHuesped,cdOrigen,fechaIng,fechaSal;
     private Vector <String> servExtr;
     private Calendar actual;
-
+    int totOcupantes;
     public Cliente() {
     }
 
-    public Cliente(String nomHuesped, String cdOrigen, String fechaIng, String fechaSal, Vector<String> servExtr, Calendar actual) {
+    public Cliente(String nomHuesped, String cdOrigen, String fechaIng, String fechaSal, Vector<String> servExtr, Calendar actual,int totOcupantes) {
         this.nomHuesped = nomHuesped;
         this.cdOrigen = cdOrigen;
         this.fechaIng = fechaIng;
         this.fechaSal = fechaSal;
         this.servExtr = servExtr;
         this.actual = actual;
+        this.totOcupantes = totOcupantes;
     }
 
     public String getNomHuesped() {
@@ -57,6 +58,14 @@ public class Cliente {
         return servExtr;
     }
 
+    public int getTotOcupantes() {
+        return totOcupantes;
+    }
+
+    public void setTotOcupantes(int totOcupantes) {
+        this.totOcupantes = totOcupantes;
+    }
+    
     public void setServExtr(Vector<String> servExtr) {
         this.servExtr = servExtr;
     }
@@ -68,7 +77,7 @@ public class Cliente {
     public void setActual(Calendar actual) {
         this.actual = actual;
     }
-
     
- 
+    
+
 }

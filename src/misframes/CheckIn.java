@@ -8,33 +8,26 @@ package misframes;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import static java.lang.System.exit;
-import misclases.PanelMenuPrincipal;
+import misclases.PanelCheckIn;
 
 /**
  *
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ * @author Hp
  */
-public class MenuPrincipal extends javax.swing.JFrame {
-    private PanelMenuPrincipal panel;
-    /**
-     * Creates new form MenuPrincipal
-     */
-    public MenuPrincipal() {
-        initComponents();
-        panel=new  PanelMenuPrincipal(new eventoCerrar());
-        
-        this.setSize(1020, 640);
-        this.setLocationRelativeTo(null);
-        
-        this.getContentPane().add(this.panel,BorderLayout.CENTER);
-        this.panel.repaint();
-        
-    
-    }
+public class CheckIn extends javax.swing.JFrame {
 
-    
-    
+    private PanelCheckIn panelCheckIn;
+            
+    public CheckIn() {
+        initComponents();
+        panelCheckIn=new  PanelCheckIn(new eventoCerrar());
+        this.setTitle("Check In Clientes");
+        
+        this.setSize(850, 620);
+        this.setLocationRelativeTo(null);
+        this.getContentPane().add(this.panelCheckIn,BorderLayout.CENTER);
+        this.panelCheckIn.repaint();
+    }
     
     class eventoCerrar implements ActionListener{
 
@@ -42,11 +35,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent arg0) {
             // TODO Auto-generated method stub
             dispose();
-            new LogIn().setVisible(true);
+            new MenuPrincipal().setVisible(true);
         }
 
       
     }
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,21 +52,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
-            }
-        });
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        //System.out.println("Hi");
-        //System.exit(0);
-      
-// TODO add your handling code here:
-    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
@@ -90,20 +73,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuPrincipal().setVisible(true);
+                new CheckIn().setVisible(true);
             }
         });
     }

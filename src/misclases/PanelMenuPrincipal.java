@@ -25,8 +25,13 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
+//<<<<<<< HEAD
 import misframes.EstadoHabitaciones;
 import misframes.MenuPrincipal;
+//=======
+import misframes.CheckIn;
+import misframes.MenuConsultas;
+//>>>>>>> JuanCarlos3
 
 
 public class PanelMenuPrincipal extends JPanel{
@@ -81,10 +86,14 @@ public class PanelMenuPrincipal extends JPanel{
              jButtonCheckIn.setFocusable(false);
             jButtonCheckIn.addMouseListener(new MouseAdapter() {
             public void mouseReleased(MouseEvent evt) {
+//<<<<<<< HEAD
                 cerrarVentana();
                 new EstadoHabitaciones().setVisible(true);
+//=======
+            
+//>>>>>>> JuanCarlos3
                 //JOptionPane.showMessageDialog(null, "Hi", "hi", JOptionPane.WARNING_MESSAGE);
-                 
+                
             }
             public void mouseEntered(MouseEvent evt){
                 jButtonCheckIn.setBackground(Color.yellow);
@@ -162,7 +171,7 @@ public class PanelMenuPrincipal extends JPanel{
             jButtonCambios.addMouseListener(new MouseAdapter() {
             public void mouseReleased(MouseEvent evt) {
                 
-                
+                new MenuConsultas().setVisible(true);
                 //JOptionPane.showMessageDialog(null, "Hi", "hi", JOptionPane.WARNING_MESSAGE);
                  
             }
