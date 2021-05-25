@@ -374,12 +374,13 @@ public class PanelCheckIn extends JPanel{
             fontt2 = new Font("Arial Black", 1, 15);
             
             jTextFieldNomHuesped = new JTextField("");
-             jTextFieldNomHuesped.setFont(sizeFont_2);
+            jTextFieldNomHuesped.setFont(sizeFont_2);
             jTextFieldCdOrigen = new JTextField("");
             jTextFieldCdOrigen.setFont(sizeFont_2);
             jTextFieldFechaIngr = new JTextField();
             jTextFieldFechaIngr.setText(fechaIn);
             jTextFieldFechaIngr.setFont(sizeFont_2);
+            jTextFieldFechaIngr.setEditable(false);
             
             font3=new File("src/fonts/Salacia.otf");
             fuente3=Font.createFont(Font.TRUETYPE_FONT, font3);
