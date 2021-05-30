@@ -31,8 +31,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
+import misframes.CheckIn;
 import misframes.MenuPrincipal;
-import misframes.RegClientes;
 
 
 public class PanelEstadoHabitaciones extends JPanel{
@@ -65,6 +65,7 @@ public class PanelEstadoHabitaciones extends JPanel{
         public void actionPerformed(ActionEvent ae) {
           
             //LLamar check in...
+            new CheckIn(tipo,pos).setVisible(true);
             //System.out.println("tipo: "+this.tipo+" pos "+this.pos);
             
         }
