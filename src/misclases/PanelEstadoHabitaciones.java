@@ -31,6 +31,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
+import misframes.CheckIn;
 import misframes.MenuPrincipal;
 import misframes.RegClientes;
 
@@ -66,7 +67,8 @@ public class PanelEstadoHabitaciones extends JPanel{
           
             //LLamar check in...
             //System.out.println("tipo: "+this.tipo+" pos "+this.pos);
-            
+            cerrarVentana2();
+            new CheckIn(this.pos).setVisible(true);
         }
         
         
@@ -199,7 +201,9 @@ public class PanelEstadoHabitaciones extends JPanel{
          SwingUtilities.getWindowAncestor(this).dispose();
         new MenuPrincipal().setVisible(true);
     }
-    
+        private void cerrarVentana2(){
+         SwingUtilities.getWindowAncestor(this).dispose();
+        }
     private void inicializaArray(){
         for ( i = 0; i < Hotel.habitaciones.size(); i++) {
             this.boton=new JButton("No."+Hotel.habitaciones.get(i).getNumero()+" tipo "+Hotel.habitaciones.get(i).getTipo());

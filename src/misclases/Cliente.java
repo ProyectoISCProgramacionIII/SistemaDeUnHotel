@@ -77,6 +77,11 @@ public class Cliente {
     public void setActual(Calendar actual) {
         this.actual = actual;
     }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "nomHuesped=" + nomHuesped + ", cdOrigen=" + cdOrigen + ", fechaIng=" + fechaIng + ", fechaSal=" + fechaSal + ", servExtr=" + servExtr + ", actual=" + actual + ", totOcupantes=" + totOcupantes + '}';
+    }
     
     
 

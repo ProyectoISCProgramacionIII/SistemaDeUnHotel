@@ -59,14 +59,16 @@ public class PanelCheckIn extends JPanel{
     private File font = null,font1=null,font2=null,font3;
     private BufferedImage playa,escudo,spa,bar;
     
+    private int numero;
     public PanelCheckIn() {
         this.setBackground(Color.cyan);
         initComponents();
         
     }
     
-    public PanelCheckIn(ActionListener evt){
+    public PanelCheckIn(ActionListener evt,int numero){
         act=evt;
+        this.numero=numero;
         this.setBackground(Color.cyan);
         initComponents();
     }
@@ -113,31 +115,43 @@ public class PanelCheckIn extends JPanel{
         
         if(this.jCheckBoxServCuarto.isSelected()){
             this.service.add(this.jCheckBoxServCuarto.getText());
-            
+            Hotel.habitaciones.get(this.numero).setServiciocuarto(true);
         }
         
         if(this.jCheckBoxServBar.isSelected()){
             this.service.add(this.jCheckBoxServBar.getText());
+            Hotel.habitaciones.get(this.numero).setServiciobar(true);
+        
         }
         
         if(this.jCheckBoxServTintoreria.isSelected()){
             this.service.add(this.jCheckBoxServTintoreria.getText());
+            Hotel.habitaciones.get(this.numero).setServiciotintoreria(true);
+        
         }
         
         if(this.jCheckBoxServSPA.isSelected()){
            this.service.add(this.jCheckBoxServSPA.getText());
+           Hotel.habitaciones.get(this.numero).setServiciospa(true);
+        
         }
         
         if(this.jCheckBoxServNiñera.isSelected()){
             this.service.add(this.jCheckBoxServNiñera.getText());
+            Hotel.habitaciones.get(this.numero).setServicioninera(true);
+        
         }
         
         if(this.jCheckBoxServAntro.isSelected()){
             this.service.add(this.jCheckBoxServAntro.getText());
+            Hotel.habitaciones.get(this.numero).setServicioantro(true);
+        
         }
         
         if(this.jCheckBoxServCarro.isSelected()){
             this.service.add(this.jCheckBoxServCarro.getText());
+            Hotel.habitaciones.get(this.numero).setServiciocarro(true);
+        
         }
         
         if(1==1){
@@ -241,6 +255,9 @@ public class PanelCheckIn extends JPanel{
         }
         //Cliente(String nomHuesped, String cdOrigen, String fechaIng, String fechaSal, Vector<String> servExtr, Calendar actual)
         Cliente cliente=new Cliente(nom,cd,fechaIn, fecSal, service,Ingre,totOcu);
+        Hotel.habitaciones.get(this.numero).setCliente(cliente);
+        Hotel.habitaciones.get(this.numero).setTotal_personas(cliente.getTotOcupantes());
+        System.out.println(Hotel.habitaciones);
         /*System.out.println("Clienete...");
         System.out.println("Nombre: "+cliente.getNomHuesped());
         System.out.println("Ciudad Origen: "+cliente.getCdOrigen());

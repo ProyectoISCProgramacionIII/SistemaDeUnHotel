@@ -17,10 +17,16 @@ import misclases.PanelCheckIn;
 public class CheckIn extends javax.swing.JFrame {
 
     private PanelCheckIn panelCheckIn;
-            
+    private int numero; 
+
     public CheckIn() {
+    }
+    
+    
+    public CheckIn(int numero) {
+        this.numero=numero;
         initComponents();
-        panelCheckIn=new  PanelCheckIn(new eventoCerrar());
+        panelCheckIn=new  PanelCheckIn(new eventoCerrar(),this.numero);
         this.setTitle("Check In Clientes");
         
         this.setSize(850, 620);
