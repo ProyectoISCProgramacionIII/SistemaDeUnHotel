@@ -3,20 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misclases/PanelMenuPrincipal.java</file>
             <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misclases/PanelLogIn.java</file>
-            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misframes/RegClientes.java</file>
-            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misframes/CheckIn.java</file>
+            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misclases/MySqlConn.java</file>
+            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misframes/Consulta10ListaPersonas.java</file>
+            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misframes/LogIn.java</file>
+            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misclases/Fondo.java</file>
             <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misframes/Portada.java</file>
             <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misframes/MenuPrincipal.java</file>
-            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misclases/PanelRegCliente.java</file>
-            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misclases/PanelMenuPrincipal.java</file>
-            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misclases/Habitacion.java</file>
-            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misclases/Cliente.java</file>
-            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misclases/PanelCheckIn.java</file>
-            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misframes/LogIn.java</file>
-            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misframes/EstadoHabitaciones.java</file>
-            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misclases/Fondo.java</file>
-            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misclases/PanelEstadoHabitaciones.java</file>
         </group>
     </open-files>
 </project-private>
