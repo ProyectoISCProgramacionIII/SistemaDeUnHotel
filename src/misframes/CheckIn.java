@@ -6,6 +6,7 @@
 package misframes;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import misclases.PanelCheckIn;
@@ -29,7 +30,8 @@ public class CheckIn extends javax.swing.JFrame {
         panelCheckIn=new  PanelCheckIn(new eventoCerrar(),this.numero);
         this.setTitle("Check In Clientes");
         
-        this.setSize(850, 620);
+        this.setSize(1020, 640);
+          this.setMinimumSize(new Dimension(1020,640));
         this.setLocationRelativeTo(null);
         this.getContentPane().add(this.panelCheckIn,BorderLayout.CENTER);
         this.panelCheckIn.repaint();

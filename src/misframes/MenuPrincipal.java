@@ -6,6 +6,7 @@
 package misframes;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import static java.lang.System.exit;
@@ -25,6 +26,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         panel=new  PanelMenuPrincipal(new eventoCerrar());
         
         this.setSize(1020, 640);
+          this.setMinimumSize(new Dimension(1020,640));
         this.setLocationRelativeTo(null);
         
         this.getContentPane().add(this.panel,BorderLayout.CENTER);

@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -25,10 +26,11 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 import misframes.LogIn;
 import misframes.MenuPrincipal;
+import org.apache.commons.codec.digest.DigestUtils;
 
 
 public class PanelLogIn extends JPanel{
-
+    private MySqlConn conn;
     private Font fuente,fuente2,fuente3,sizeFont,sizeFont_2,sizeFont_3,sizeFont_4;
     private File font = null,font_1 = null,font_2 = null;
     private JTextField jTextFieldUsuario;
@@ -41,10 +43,12 @@ public class PanelLogIn extends JPanel{
         
         initComponents();
         this.setBackground(Color.CYAN);
+         conn=new MySqlConn();
     }
     public PanelLogIn(ActionListener act){
         initComponents();
         this.act=act;
+        conn=new MySqlConn();
     }
     
     private void initComponents(){
@@ -140,11 +144,32 @@ public class PanelLogIn extends JPanel{
         return this.jLabelUsuario;
     }
     public void cerrar(){
+        char []con=this.jPasswordFieldContrasena.getPassword();
+        String contra=new String (con);
+        String query="Select * from cuentas where cuenta='"+this.jTextFieldUsuario.getText()+"'";
+         contra=DigestUtils.md5Hex(contra);
+         this.conn.Consult(query);
+         int n;
+         try{
+             this.conn.rs.last();
+             n=this.conn.rs.getRow();
+             this.conn.rs.first();
+             if(n>0){
+                 
+             if(contra.equals(this.conn.rs.getString(2))){
+                    SwingUtilities.getWindowAncestor(this).dispose();
+                 new MenuPrincipal().setVisible(true);
+            }else{
+                 JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrecto(s)","Error",JOptionPane.ERROR_MESSAGE);
+             }
         
-        if(this.jTextFieldUsuario.getText().equals("Cris")){
-           SwingUtilities.getWindowAncestor(this).dispose();
-           new MenuPrincipal().setVisible(true);
-        }
+             }else{
+                   JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrecto(s)","Error",JOptionPane.ERROR_MESSAGE);
+             }
+             
+         }catch(Exception ex){
+             
+         }
         
     }
       @Override

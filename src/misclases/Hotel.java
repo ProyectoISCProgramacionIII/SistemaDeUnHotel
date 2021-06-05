@@ -47,10 +47,62 @@ public class Hotel {
                 num++;
               
             }
+            extraeDatosMySql();
+            
+        }
+        private void extraeDatosMySql(){
+            MySqlConn conn=new MySqlConn();
+            boolean estado,serviciocuarto,serviciobar,serviciotintoreria,serviciospa,servicioninera,servicioantro,serviciocarro;
+            int numero,piso,tipo,total_personas;
+            double costo;
+            Cliente cliente;
+            String nomHuesped,cdOrigen,fechaIng,fechaSal;
+            Habitacion hab;
+            String query="select * from habitacion";
+            try{
+                conn.Consult(query);
+            }catch(Exception ex){
+                
+            }
+                int n;
+            try{
+                conn.rs.last();
+                n=conn.rs.getRow();
+                conn.rs.first();
+                if(n>0){
+                    for (int i = 0; i < n; i++) {
+                        
+                        numero=conn.rs.getInt(1);
+                        piso=conn.rs.getInt(13);
+                        cliente=new Cliente();
+                        if(piso==1){
+                            
+                            Hotel.habitaciones.get(numero-100).setEstado(true);
+                            
+                        }else{
+                            Hotel.habitaciones.get((numero-200)+15).setEstado(true);
+                           
+                            
+                        }
+                        
+                        conn.rs.next();
+                    }
+                    
+                }else{
+                    
+                }
+             
+                
+            }catch(Exception ex){
+                
+                
+                
+            }
+            
             
             
         }
-        
+            
     public static void main(String[] args) {
        
         

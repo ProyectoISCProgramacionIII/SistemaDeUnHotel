@@ -6,6 +6,8 @@
 package misframes;
 
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -81,6 +83,9 @@ public class Consulta10ListaPersonas extends javax.swing.JFrame {
         initComponents();
         iniciaArbol();
         iniciaTabla();
+        this.setSize(1020, 640);
+          this.setMinimumSize(new Dimension(1020,640));
+        this.setLocationRelativeTo(null);
         
     }
 
@@ -146,6 +151,8 @@ public class Consulta10ListaPersonas extends javax.swing.JFrame {
         jLabelTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableInformacion = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -173,10 +180,52 @@ public class Consulta10ListaPersonas extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
+        jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+        jButton1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Regresa.png"))); // NOI18N
+        jButton1.setText("Regresar");
+        jButton1.setAlignmentX(0.5F);
+        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton1MouseExited(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton1MouseReleased(evt);
+            }
+        });
+        jPanel2.add(jButton1);
+
+        jPanel1.add(jPanel2, java.awt.BorderLayout.PAGE_END);
+
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+        // TODO add your handling code here:
+        this.jButton1.setBackground(Color.GREEN);
+        
+    }//GEN-LAST:event_jButton1MouseEntered
+
+    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+        // TODO add your handling code here:
+        this.jButton1.setBackground(Color.LIGHT_GRAY);
+        
+    }//GEN-LAST:event_jButton1MouseExited
+
+    private void jButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseReleased
+        // TODO add your handling code here:
+        dispose();
+        new MenuConsultas().setVisible(true);
+        
+    }//GEN-LAST:event_jButton1MouseReleased
 
     /**
      * @param args the command line arguments
@@ -214,8 +263,10 @@ public class Consulta10ListaPersonas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableInformacion;
     // End of variables declaration//GEN-END:variables

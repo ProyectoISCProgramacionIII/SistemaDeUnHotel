@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
@@ -34,10 +36,12 @@ public class MenuConsultas extends javax.swing.JFrame {
     private JPanel panel;
     private JButton jButtonConsulta1,jButtonConsulta2,jButtonConsulta3,jButtonConsulta4,
             jButtonConsulta5,jButtonConsulta6,jButtonConsulta7,jButtonConsulta8,jButtonConsulta9,
-                    jButtonConsulta10,jButtonConsulta11,jButtonConsulta12;
+                    jButtonConsulta10,jButtonConsulta11,jButtonConsulta12,jButtonReg;
     private BufferedImage fondo,icono,logo;
+    Icon iconoreg;
     private File font,font2;
     private Font fuente,fuente2,sizeFont;
+    private Dimension dim;
     /**
      * Creates new form MenuConsultas
      */
@@ -52,7 +56,8 @@ public class MenuConsultas extends javax.swing.JFrame {
         this.panel.setLayout(null);
         this.getContentPane().add(this.panel,BorderLayout.CENTER);
         this.setTitle("Consultas");
-         this.setSize(1020, 680);
+         this.setSize(1020, 640);
+           this.setMinimumSize(new Dimension(1020,640));
         this.setLocationRelativeTo(null);
     }
     
@@ -79,6 +84,7 @@ public class MenuConsultas extends javax.swing.JFrame {
             fondo=ImageIO.read(new File("src/imagenes/HojasTropicales.jpg"));
              icono=ImageIO.read(new File("src/imagenes/ConsultasIcono.png"));
              logo=ImageIO.read(new File("src/imagenes/hotel.jpg"));
+             iconoreg=new ImageIcon(getClass().getResource("/imagenes/Regresa.png"));
         } catch (IOException ex) {
             Logger.getLogger(MenuConsultas.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -357,7 +363,8 @@ public class MenuConsultas extends javax.swing.JFrame {
                 
             }
         public void mouseReleased(MouseEvent ev){
-            
+            dispose();
+            new Consulta10ListaPersonas().setVisible(true);
         }
         
     });
@@ -388,7 +395,36 @@ public class MenuConsultas extends javax.swing.JFrame {
         }
         
     });
+        /////////////////////////////////////////////////////
+           this.jButtonReg=new JButton("Regresar");
+        this.jButtonReg.setBounds(0, 0, 150, 50);
+        this.jButtonReg.setCursor(new Cursor(Cursor.HAND_CURSOR));
+          this.jButtonReg.setBorder(new BevelBorder(BevelBorder.LOWERED));
+        this.jButtonReg.setFont(this.sizeFont);
+        this.jButtonReg.setIcon(this.iconoreg);
+          this.jButtonReg.addMouseListener(new MouseAdapter(){
         
+            
+            @Override
+            public void mouseEntered(MouseEvent ev){
+                
+                jButtonReg.setBackground(Color.GREEN);
+                
+                
+            }
+        
+            public void mouseExited(MouseEvent ev){
+                jButtonReg.setBackground(Color.LIGHT_GRAY);
+                
+                
+            }
+        public void mouseReleased(MouseEvent ev){
+            dispose();
+            new MenuPrincipal().setVisible(true);
+            
+        }
+        
+    });
         
         this.panel.add(this.jButtonConsulta1);
          this.panel.add(this.jButtonConsulta2);
@@ -401,6 +437,7 @@ public class MenuConsultas extends javax.swing.JFrame {
                 this.panel.add(this.jButtonConsulta9);
                  this.panel.add(this.jButtonConsulta10);
                   this.panel.add(this.jButtonConsulta11);
+                    this.panel.add(this.jButtonReg);
         
         
     }
@@ -413,16 +450,21 @@ public class MenuConsultas extends javax.swing.JFrame {
            
          //   private BufferedImage fondo=null,icono=null;
            
-           
+           public Dimension dim;
             
              
            @Override
            public void paint(Graphics g){
                
-               Dimension dim=getSize();
+                dim=getSize();
+               jButtonConsulta7.setBounds(dim.width-350, 100, 300, 50);
+                jButtonConsulta8.setBounds(dim.width-350, 160, 300, 50);
+                jButtonConsulta9.setBounds(dim.width-350, 220, 300, 50);
+                jButtonConsulta10.setBounds(dim.width-350, 280, 300, 50);
+               jButtonConsulta11.setBounds(dim.width-350, 340, 300, 50);
                g.drawImage(fondo, 0,0,dim.width, dim.height, null);
                g.drawImage(icono, (dim.width/2)-50,(dim.height/2),150, 100, null);
-             g.drawImage(logo, (dim.width/2)-75,(dim.height/2)-200,200, 150, null);
+             g.drawImage(logo, (dim.width/2)-80,(dim.height/2)-200,200, 150, null);
             sizeFont=fuente2.deriveFont(80f);
              g.setFont(sizeFont);
              g.setColor(Color.WHITE);

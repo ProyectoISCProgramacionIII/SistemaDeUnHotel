@@ -6,6 +6,7 @@
 package misframes;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import misclases.Hotel;
 import misclases.PanelEstadoHabitaciones;
 
@@ -24,7 +25,8 @@ public class EstadoHabitaciones extends javax.swing.JFrame {
         nombrarBotones();
         this.setLayout(new BorderLayout());
         this.getContentPane().add(new PanelEstadoHabitaciones(),BorderLayout.CENTER);
-        this.setSize(1020, 600);
+        this.setSize(1200, 640);
+          this.setMinimumSize(new Dimension(1200,640));
         this.setLocationRelativeTo(null);
         
       //  this.getContentPane().add(new PanelEstadoHabitaciones(),BorderLayout.CENTER);

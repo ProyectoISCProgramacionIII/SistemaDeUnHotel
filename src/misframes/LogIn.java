@@ -6,6 +6,7 @@
 package misframes;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import misclases.PanelLogIn;
@@ -22,7 +23,8 @@ public class LogIn extends javax.swing.JFrame {
     public LogIn() {
         initComponents();
         this.getContentPane().add(new PanelLogIn(new EventoCerrar()),BorderLayout.CENTER);
-        this.setSize(900, 600);
+        this.setSize(1020, 640);
+          this.setMinimumSize(new Dimension(1020,640));
         this.setLocationRelativeTo(null);
     }
     

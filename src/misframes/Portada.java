@@ -40,6 +40,7 @@ public class Portada extends javax.swing.JFrame  {
             jPanelFondo.add(fondo,BorderLayout.CENTER);
              jPanelFondo.repaint();
             this.setSize(1020, 640);
+             this.setMinimumSize(new Dimension(1020,640));
             this.setLocationRelativeTo(null);
         
     }
