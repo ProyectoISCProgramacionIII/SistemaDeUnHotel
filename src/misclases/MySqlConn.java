@@ -1,6 +1,6 @@
 
 
-package BaseDatos;
+package misclases;
 
 import java.sql.Connection;//interface
 import java.sql.DriverManager;//clase
@@ -22,7 +22,7 @@ public class MySqlConn {
                             "jdbc:mysql://148.211.152.233/progsist?"
                             +"user=isc&password=isc";*/
             String connectionUrl =
-                            "jdbc:mysql://localhost/progsist?"
+                            "jdbc:mysql://localhost/hotel?"
                             +"user=root&password=";
 
             // conexion con la bd
