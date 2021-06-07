@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import misclases.MySqlConn;
 
@@ -97,10 +98,9 @@ public class Consulta10ListaPersonas extends javax.swing.JFrame {
         try{
             this.conn.Consult(query);
             this.conn.rs.last();
-            n=this.conn.rs.getRow();
-           
+            n=this.conn.rs.getRow(); 
             this.conn.rs.first();
-          
+          if(n>0){
             for (int i = 0; i < n; i++) {
                 
                 this.lista.add(new Informacion(this.conn.rs.getString(14),this.conn.rs.getInt(1)));
@@ -108,9 +108,13 @@ public class Consulta10ListaPersonas extends javax.swing.JFrame {
                 this.conn.rs.next();
               
             }
+            
+          }else{
+              JOptionPane.showMessageDialog(this, "No existen datos que mostrar");
+          }
         }catch(Exception ex){
                     
-                    System.err.println("error");
+             //       System.err.println("error");
                     
          }
         

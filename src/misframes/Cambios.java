@@ -5,6 +5,7 @@
  */
 package misframes;
 
+import com.toedter.calendar.JDateChooser;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -18,6 +19,8 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -62,6 +65,7 @@ public class Cambios extends javax.swing.JFrame {
     private Font font,sizefont,fuentetitulo;
     private JCheckBox checkaux;
     private JButton jButtonreg,jButtonAceptar;
+    private JDateChooser jDateChooserFechaSal;
     
     /**
      * Creates new form Cambios
@@ -98,6 +102,12 @@ public class Cambios extends javax.swing.JFrame {
     private void iniciaComponentes(){
         this.jLabelBusca=new JLabel("Ingresa numero de habitacion y presiona enter ");
         this.jTextFieldBusca=new JTextField();
+        this.jDateChooserFechaSal=new JDateChooser();
+        this.jDateChooserFechaSal.setDateFormatString("yyyy/MM/dd");
+        this.jDateChooserFechaSal.setBounds(565, 540, 150, 50);
+        this.jDateChooserFechaSal.setBorder(new BevelBorder(BevelBorder.LOWERED));
+        this.jDateChooserFechaSal.setFont(new Font("Arial Black",Font.BOLD,14));
+        this.panel.add(this.jDateChooserFechaSal);
         this.labels=new ArrayList();
         this.textfields=new ArrayList();
         this.botonescheck=new ArrayList();
@@ -196,8 +206,7 @@ public class Cambios extends javax.swing.JFrame {
         });
         
         this.panel.add(this.jButtonAceptar);
-        
-        
+
         
         for (int i = 0; i < 10; i++) {
             if(i==5){
@@ -210,17 +219,20 @@ public class Cambios extends javax.swing.JFrame {
             this.jLabelaux.setBackground(Color.CYAN);
             this.jLabelaux.setOpaque(true);
             this.jLabelaux.setBounds(corx, cory, 150, 50);
-            
             this.labels.add(this.jLabelaux);
+            
+            if(i>=9){
+            }else{
             this.jTextFieldaux=new JTextField();
             this.jTextFieldaux.setBorder(new BevelBorder(BevelBorder.LOWERED));
               this.jTextFieldaux.setFont(new Font("Arial Black",Font.BOLD,14));
             this.jTextFieldaux.setBounds(corx+160,cory,150,50);
-            if(i<4 || i==5){
+            if(i<4 || i==5 || i==8){
                 this.jTextFieldaux.setEditable(false);
             }
             this.textfields.add(jTextFieldaux);
-            
+              this.panel.add(this.textfields.get(i));
+            }
             //RadioButtons...
             if(i<7){
                     this.checkaux=new JCheckBox(servicios[i]);
@@ -238,7 +250,7 @@ public class Cambios extends javax.swing.JFrame {
             cory+=60;
             cory2+=30;
             this.panel.add(this.labels.get(i));
-            this.panel.add(this.textfields.get(i));
+          
              }
         
         
@@ -246,16 +258,25 @@ public class Cambios extends javax.swing.JFrame {
     }
     
     private void despliegaDatos(){
-        
-        String query="select * from habitacion where numero='"+Integer.parseInt(this.jTextFieldBusca.getText().trim())+"'";
-        
+        int numero;
+        SimpleDateFormat aux=new SimpleDateFormat("yyyy-MM-dd");
+         String query;
+         boolean band=true;
         try{
-            this.conn.Consult(query);
+             numero=Integer.parseInt(this.jTextFieldBusca.getText().trim());
+              query="select * from habitacion where numero='"+numero+"'";
+               this.conn.Consult(query);
+        }catch(NumberFormatException ex){
+            
+            JOptionPane.showMessageDialog(this, "Solo se permiten digitos del 0 al 9");
+            band=false;
         }catch(Exception ex){
-            
-            
+            band=false;
         }
+         
         
+        
+        if(band){
         int n=0;
         
         try{
@@ -271,15 +292,17 @@ public class Cambios extends javax.swing.JFrame {
                 }else{
                     
                 }
-                
-                this.textfields.get(2).setText(""+this.conn.rs.getInt(10));
+                String aux2=this.conn.rs.getInt(10)==1?"Sencilla":this.conn.rs.getInt(10)==2?"Doble":"Sencilla";
+                this.textfields.get(2).setText(""+aux2);
                 this.textfields.get(3).setText(""+this.conn.rs.getDouble(11));
                  this.textfields.get(4).setText(""+this.conn.rs.getInt(12));
                  this.textfields.get(5).setText(""+this.conn.rs.getInt(13));
                    this.textfields.get(6).setText(""+this.conn.rs.getString(14));
                 this.textfields.get(7).setText(""+this.conn.rs.getString(15));
                 this.textfields.get(8).setText(""+this.conn.rs.getString(16));
-                this.textfields.get(9).setText(""+this.conn.rs.getString(17));
+                this.jDateChooserFechaSal.setDate(aux.parse(this.conn.rs.getString(17)));
+       
+                //this.textfields.get(9).setText(""+this.conn.rs.getString(17));
                 
                 
                 this.botonescheck.get(0).setSelected(this.conn.rs.getBoolean(3));
@@ -292,29 +315,33 @@ public class Cambios extends javax.swing.JFrame {
                 
                 
             }else{
-                JOptionPane.showMessageDialog(null,"No existen habitaciones con ese numero" );
+                JOptionPane.showMessageDialog(null,"No existen habitaciones con ese numero o habitacion desocupada" );
             }
             
         }catch(Exception ex){
             
         }
-        
+        }
         
     }
     private void eventoCambios(){
         
         String nombre,fechain,fechasal,cdorigen;
-        int totper;
+        int totper=0;
         boolean band=true;
-        Date fein,fesal;
+        SimpleDateFormat fein=new SimpleDateFormat("yyyy-MM-dd"),fesal=new SimpleDateFormat("yyyy/MM/dd");
        int servcuarto,servbar,servspa,servantro,servtintoreria,servninera,servcarro;
         nombre=this.textfields.get(6).getText();
         fechain=this.textfields.get(8).getText();
-        fechasal=this.textfields.get(9).getText();
+        fechasal=((JTextField)(this.jDateChooserFechaSal.getDateEditor().getUiComponent())).getText();
         cdorigen=this.textfields.get(7).getText();
-        totper=Integer.parseInt(this.textfields.get(4).getText());
-        //que tipo de habitacion es....
-        if(Integer.parseInt(this.textfields.get(2).getText().trim())==1){
+           if(this.textfields.get(0).getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "No estan todos los datos");
+            band=false;
+        }
+        try{
+            totper=Integer.parseInt(this.textfields.get(4).getText());//que tipo de habitacion es....
+             if(Integer.parseInt(this.textfields.get(2).getText().trim())==1){
             if(totper>Habitacion.MAX_PER_1){
                 JOptionPane.showMessageDialog(this, "Excediste limite de personas en habitacion de tipo 1");
                 band=false;
@@ -334,17 +361,25 @@ public class Cambios extends javax.swing.JFrame {
             }
             
         }
-        
-        fein=new Date(fechain);
-        fesal=new Date(fechasal);
-        
-        if(fesal.before(fein)){
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this, "Solo digitos en el campo de total de personas");
+                band=false;
+            }
+       
+                
+
+        try{
+        if(fesal.parse(fechasal).before(fein.parse(fechain)) || fesal.parse(fechasal).equals(fein.parse(fechain))){
             JOptionPane.showMessageDialog(this, "Fecha de salida invalida");
             band=false;
-        }else{
-            band=true;
+        }else {
+       
         }
-        
+        }catch(Exception ex){
+
+        }    
+     
+    
         if(band){
             servcuarto=this.botonescheck.get(0).isSelected()?1:0;
             servbar=this.botonescheck.get(1).isSelected()?1:0;
@@ -467,8 +502,8 @@ public class Cambios extends javax.swing.JFrame {
                               cadena+=String.format("Servicio carro: %-40s \n","no");
                         
                           }
-                       
-                        cadena+=String.format("Tipo: %-40s \n",this.conn.rs.getInt(10));
+                       String aux=this.conn.rs.getInt(10)==1?"Sencilla":this.conn.rs.getInt(10)==2?"Doble":"Triple";
+                        cadena+=String.format("Tipo: %-40s \n",aux);
                         cadena+=String.format("Costo: %-40.3f \n",this.conn.rs.getDouble(11));
                         cadena+=String.format("Total de personas: %-40s \n",this.conn.rs.getInt(12));
                         cadena+=String.format("Piso: %-40s \n",this.conn.rs.getInt(13));
@@ -590,7 +625,8 @@ public class Cambios extends javax.swing.JFrame {
                         
                           }
                        
-                        cadena+=String.format("Tipo: %-40s \n",this.conn.rs.getInt(10));
+                       String aux=this.conn.rs.getInt(10)==1?"Sencilla":this.conn.rs.getInt(10)==2?"Doble":"Triple";
+                        cadena+=String.format("Tipo: %-40s \n",aux);
                         cadena+=String.format("Costo: %-40.3f \n",this.conn.rs.getDouble(11));
                         cadena+=String.format("Total de personas: %-40s \n",this.conn.rs.getInt(12));
                         cadena+=String.format("Piso: %-40s \n",this.conn.rs.getInt(13));
@@ -661,7 +697,11 @@ public class Cambios extends javax.swing.JFrame {
                       
                     
                    labels.get(i).setBounds(dim.width/2-100,cory,150,50);
+                   if(i>=9){
+                       
+                   }else{
                    textfields.get(i).setBounds(dim.width/2+60,cory,150,50);
+                   }
                      cory+=60;
                 }
                 cory=300;
@@ -671,6 +711,7 @@ public class Cambios extends javax.swing.JFrame {
                 }
                 jButtonAceptar.setBounds(dim.width-215, 520, 150, 50);
                 scroll.setBounds(0,50,dim.width,200);
+                jDateChooserFechaSal.setBounds(dim.width/2+60, 540, 150, 50);
                 g.drawImage(fondo, 0, 0,dim.width,dim.height, null);
                 
                 fuentetitulo=fuentetitulo.deriveFont(45f);

@@ -205,8 +205,10 @@ public class PanelEstadoHabitaciones extends JPanel{
          SwingUtilities.getWindowAncestor(this).dispose();
         }
     private void inicializaArray(){
+        String tipo="";
         for ( i = 0; i < Hotel.habitaciones.size(); i++) {
-            this.boton=new JButton("No."+Hotel.habitaciones.get(i).getNumero()+" tipo "+Hotel.habitaciones.get(i).getTipo());
+            tipo=Hotel.habitaciones.get(i).getTipo()==1?"Sencilla":Hotel.habitaciones.get(i).getTipo()==2?"Doble":"triple";
+            this.boton=new JButton("No."+Hotel.habitaciones.get(i).getNumero()+" "+tipo);
             this.boton.setFont(this.sizeFont);
             this.hab.add(boton);
              this.hab.get(i).setCursor(new Cursor(Cursor.HAND_CURSOR));
