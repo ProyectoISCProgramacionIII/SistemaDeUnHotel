@@ -18,7 +18,11 @@ import misclases.PanelCheckIn;
 public class CheckIn extends javax.swing.JFrame {
 
     private PanelCheckIn panelCheckIn;
+//<<<<<<< HEAD
     private int numero; 
+//=======
+    private int po,ti;
+//>>>>>>> JuanCarlos3
 
     public CheckIn() {
     }
@@ -27,7 +31,22 @@ public class CheckIn extends javax.swing.JFrame {
     public CheckIn(int numero) {
         this.numero=numero;
         initComponents();
+//<<<<<<< HEAD
         panelCheckIn=new  PanelCheckIn(new eventoCerrar(),this.numero);
+//=======
+        panelCheckIn=new  PanelCheckIn(new eventoCerrar(),ti,po);
+        this.setTitle("Check In Clientes");
+        
+        this.setSize(850, 620);
+        this.setLocationRelativeTo(null);
+        this.getContentPane().add(this.panelCheckIn,BorderLayout.CENTER);
+        this.panelCheckIn.repaint();
+    }
+    
+    public CheckIn(int ti, int po) {
+        initComponents();
+        panelCheckIn=new  PanelCheckIn(new eventoCerrar(),ti,po);
+//>>>>>>> JuanCarlos3
         this.setTitle("Check In Clientes");
         
         this.setSize(1020, 640);

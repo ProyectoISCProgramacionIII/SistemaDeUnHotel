@@ -33,49 +33,69 @@ import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
+import static misclases.Hotel.habitaciones;
+import misframes.EstadoHabitaciones;
 
 public class PanelCheckIn extends JPanel{
+    private MySqlConn conn = new MySqlConn();
     private ButtonGroup buttonGroupPersonExtras;
-    private JButton jButtonRegistrar;
+    private JButton jButtonRegistrar,jButtonRegresar;
     private JCheckBox jCheckBoxServAntro,jCheckBoxServBar,jCheckBoxServCarro,
         jCheckBoxServCuarto,jCheckBoxServNiñera,jCheckBoxServSPA,jCheckBoxServTintoreria;
-    private JDateChooser jDateChooserSal;
+    private JDateChooser jDateChooserSal,jDateChooserEntrada;
     private JLabel jLabelFechaSal,jLabelCheck,jLabelCdOrigen,jLabelCheckIn,jLabelTotalOcu,
-        jLabelNomHuesped,jLabelServicios,jLabelFechaIng,jLabelPersonasExtr,jPanel1;
+        jLabelNomHuesped,jLabelServicios,jLabelFechaIng,jLabelPersonasExtr,jLabelUbicacion,jPanel1;
     private JRadioButton jRadioButtonNinguno,jRadioButtonPersonaExtr1, jRadioButtonPersonaExtr2;
     private JSpinner jSpinnerTotalHabi;
     private JTextField jTextFieldCdOrigen,jTextFieldFechaIngr,jTextFieldNomHuesped;
     private ActionListener act;
     
-    private Calendar Ingre,salida;
-    private String fechaIn,nom,fecIng,cd,fecSal;
+    private Calendar Ingre,salida,entrada;
+    private String fechaIn,nom,fecIng,cd,fechaSalida,fechaEntrada;
     private Vector<String> service=new Vector();
     private int totOcu;
-    private Date fechas;
-    private SimpleDateFormat f;
+    private Date fechasSal,fechasEntr;
+    private SimpleDateFormat f,f2;
     
-    private Font fuente,fuente1,fuente2,fuente3,sizeFont,sizeFont_1,sizeFont_2,sizeFont_3,fontt,fontt1,fontt2;
+    private Font fuente,fuente1,fuente2,fuente3,sizeFont,sizeFont_1,sizeFont_2,sizeFont_3,fontt,fontt1,fontt2,fontt3;
     private File font = null,font1=null,font2=null,font3;
     private BufferedImage playa,escudo,spa,bar;
     private int numero;
     
-    public PanelCheckIn() {
+    private int tipo,pos;
+    
+    public PanelCheckIn(int ti, int po) {
+        tipo=ti;
+        pos=po;
+        //System.out.println("tipo "+tipo+"  posicion: "+pos);
         this.setBackground(Color.cyan);
         initComponents();
         
     }
     
+//<<<<<<< HEAD
     public PanelCheckIn(ActionListener evt,int num){
         act=evt;
         this.numero=num;
+    }
+//=======
+    public PanelCheckIn(ActionListener evt,int ti, int po){
+        tipo=ti;
+        pos=po;
+        act=evt;
+        System.out.println("tipo "+tipo+"  posicion: "+pos);
+//>>>>>>> JuanCarlos3
         this.setBackground(Color.cyan);
         initComponents();
     }
     
     private void llenarObj(){
+        
+        int totHab=(int)this.jSpinnerTotalHabi.getValue();
         //se debe validar que los campos importantes deben de ser llenados
-        if(jTextFieldNomHuesped.getText().isEmpty() && jTextFieldCdOrigen.getText().isEmpty()){
+        if(jTextFieldNomHuesped.getText().isEmpty() && jTextFieldCdOrigen.getText().isEmpty() && totHab>0){
             JOptionPane.showMessageDialog(this,"Campos Obligatorios NO llenados \nLlene TODOS los campos...","Check In Incorrecto", WARNING_MESSAGE);
             return;
         }else{
@@ -83,35 +103,30 @@ public class PanelCheckIn extends JPanel{
             fecIng=this.fechaIn;
             cd=this.jTextFieldCdOrigen.getText();
         }
-        
-        fechas=this.jDateChooserSal.getDate();
-        f=new SimpleDateFormat("dd/MM/yyyy");
-        fecSal= f.format(fechas);
-        salida=f.getCalendar();
-        //validar que la fecha sea mayor a un dia
-        if(salida.get(Calendar.YEAR)==Ingre.get(Calendar.YEAR)){
-            if(salida.get(Calendar.MONTH)==Ingre.get(Calendar.MONTH)){
-                if(salida.get(Calendar.DAY_OF_MONTH)>Ingre.get(Calendar.DAY_OF_MONTH)){
-                    //sigue el codifgo va bien
-                }else{
-                    JOptionPane.showMessageDialog(this,"La fecha de salida es Erronea...","Check In Incorrecto", WARNING_MESSAGE);
-                    return;
-                }
-            }else if(salida.get(Calendar.MONTH)>Ingre.get(Calendar.MONTH)){//si el mes es menor al mes que se ingreso eso esta mal
-                //esta bien la fecha de salida
-            }else{
-                JOptionPane.showMessageDialog(this,"La fecha de salida es Erronea...","Check In Incorrecto", WARNING_MESSAGE);
-                return;
-            }
-        }else if(salida.get(Calendar.YEAR)>Ingre.get(Calendar.YEAR)){
-            //si el año es mayor no importa el mes ni el dia
-        }else{//esta mal la fecha
-            JOptionPane.showMessageDialog(this,"La fecha de salida es Erronea...","Check In Incorrecto", WARNING_MESSAGE);
+        if(this.jDateChooserEntrada.getDate()==null || this.jDateChooserSal.getDate()==null){
+            JOptionPane.showMessageDialog(this,"Campos Obligatorios NO llenados \nLlene TODOS los campos...","Check In Incorrecto", WARNING_MESSAGE);
             return;
         }
+        f2=new SimpleDateFormat("yyyy/MM/dd");
+        //fechaIn=f2.format(Ingreso);
+        fechasSal=this.jDateChooserSal.getDate();
+        fechasEntr=this.jDateChooserEntrada.getDate();
+        f=new SimpleDateFormat("dd/MM/yyyy");
+        fechaEntrada=f.format(this.jDateChooserEntrada.getDate());
+        fechaSalida=f2.format(this.jDateChooserSal.getDate());
         
-        
-        int totHab=(int)this.jSpinnerTotalHabi.getValue();
+        try{
+            fechasEntr=f.parse(fechaEntrada);
+            fechasSal=f2.parse(fechaSalida);
+            if(fechasEntr.compareTo(fechasSal) < 0){
+                //correcta la fecha
+            }else{
+                JOptionPane.showMessageDialog(this,"La fecha es Erronea la salida es menor a la de entrada...","Check In Incorrecto", WARNING_MESSAGE);
+                return;
+            }
+        }catch(Exception e){
+            System.out.println("Error -> "+e.getMessage());
+        }
         
         if(this.jCheckBoxServCuarto.isSelected()){
             this.service.add(this.jCheckBoxServCuarto.getText());
@@ -142,10 +157,10 @@ public class PanelCheckIn extends JPanel{
             this.service.add(this.jCheckBoxServCarro.getText());
         }
         
-        if(1==1){
+        if(tipo==1){
             
-            if(((int)this.jSpinnerTotalHabi.getValue())<=4 && ((int)this.jSpinnerTotalHabi.getValue())>0){
-                if(((int)this.jSpinnerTotalHabi.getValue())<=2){
+            if(((int)this.jSpinnerTotalHabi.getValue())<=1 && ((int)this.jSpinnerTotalHabi.getValue())>0){
+                if(((int)this.jSpinnerTotalHabi.getValue())<=1){
                     if(!this.jRadioButtonPersonaExtr1.isSelected() && !this.jRadioButtonPersonaExtr2.isSelected()){
                         totOcu=((int)this.jSpinnerTotalHabi.getValue());
                     }else{
@@ -154,16 +169,49 @@ public class PanelCheckIn extends JPanel{
                     }
                     
                 }else{
-                    if((((int)this.jSpinnerTotalHabi.getValue())-2)==1){
+                    if((((int)this.jSpinnerTotalHabi.getValue())-1)==1){
                         if(this.jRadioButtonPersonaExtr1.isSelected()){
-                            totOcu=((int)this.jSpinnerTotalHabi.getValue())+1;
+                            totOcu=((int)this.jSpinnerTotalHabi.getValue());
+                        }else{
+                            JOptionPane.showMessageDialog(this,"Campo de total de Ocupantes \nNO marco los Extra Bien","Check In Incorrecto", WARNING_MESSAGE);
+                            return;
+                        }
+                    }else if((((int)this.jSpinnerTotalHabi.getValue())-2)==1){
+                        if(this.jRadioButtonPersonaExtr2.isSelected()){
+                            totOcu=((int)this.jSpinnerTotalHabi.getValue());
+                        }else{
+                            JOptionPane.showMessageDialog(this,"Campo de total de Ocupantes \nNO marco los Extra Bien","Check In Incorrecto", WARNING_MESSAGE);
+                            return;
+                        }
+                    }
+                }
+                JOptionPane.showMessageDialog(this,"Registro Exitoso...","Exitoso", PLAIN_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(this,"Campo de total de Ocupantes de la Habitación","Check In Incorrecto", WARNING_MESSAGE);
+                return;
+            }
+            
+            
+        }else if(tipo==2){
+            if(((int)this.jSpinnerTotalHabi.getValue())<=2 && ((int)this.jSpinnerTotalHabi.getValue())>0){
+                if(((int)this.jSpinnerTotalHabi.getValue())<=2){
+                    if(!this.jRadioButtonPersonaExtr1.isSelected() && !this.jRadioButtonPersonaExtr2.isSelected()){
+                        totOcu=((int)this.jSpinnerTotalHabi.getValue());
+                    }else{
+                        JOptionPane.showMessageDialog(this,"Campo de total de Ocupantes \nNO marco los Extra Bien","Check In Incorrecto", WARNING_MESSAGE);
+                        return;
+                    }
+                }else{
+                    if((((int)this.jSpinnerTotalHabi.getValue())-1)==2){
+                        if(this.jRadioButtonPersonaExtr1.isSelected()){
+                            totOcu=((int)this.jSpinnerTotalHabi.getValue());
                         }else{
                             JOptionPane.showMessageDialog(this,"Campo de total de Ocupantes \nNO marco los Extra Bien","Check In Incorrecto", WARNING_MESSAGE);
                             return;
                         }
                     }else if((((int)this.jSpinnerTotalHabi.getValue())-2)==2){
                         if(this.jRadioButtonPersonaExtr2.isSelected()){
-                            totOcu=((int)this.jSpinnerTotalHabi.getValue())+2;
+                            totOcu=((int)this.jSpinnerTotalHabi.getValue());
                         }else{
                             JOptionPane.showMessageDialog(this,"Campo de total de Ocupantes \nNO marco los Extra Bien","Check In Incorrecto", WARNING_MESSAGE);
                             return;
@@ -176,10 +224,9 @@ public class PanelCheckIn extends JPanel{
                 return;
             }
             
-            
-        }else if(2==1){
-            if(((int)this.jSpinnerTotalHabi.getValue())<=6 && ((int)this.jSpinnerTotalHabi.getValue())>0){
-                if(((int)this.jSpinnerTotalHabi.getValue())<=4){
+        }else if(tipo==3){
+            if(((int)this.jSpinnerTotalHabi.getValue())<=3 && ((int)this.jSpinnerTotalHabi.getValue())>0){
+                if(((int)this.jSpinnerTotalHabi.getValue())<=3){
                     if(!this.jRadioButtonPersonaExtr1.isSelected() && !this.jRadioButtonPersonaExtr2.isSelected()){
                         totOcu=((int)this.jSpinnerTotalHabi.getValue());
                     }else{
@@ -187,48 +234,16 @@ public class PanelCheckIn extends JPanel{
                         return;
                     }
                 }else{
-                    if((((int)this.jSpinnerTotalHabi.getValue())-4)==1){
+                    if((((int)this.jSpinnerTotalHabi.getValue())-1)==3){
                         if(this.jRadioButtonPersonaExtr1.isSelected()){
-                            totOcu=((int)this.jSpinnerTotalHabi.getValue())+1;
+                            totOcu=((int)this.jSpinnerTotalHabi.getValue());
                         }else{
                             JOptionPane.showMessageDialog(this,"Campo de total de Ocupantes \nNO marco los Extra Bien","Check In Incorrecto", WARNING_MESSAGE);
                             return;
                         }
-                    }else if((((int)this.jSpinnerTotalHabi.getValue())-4)==2){
+                    }else if((((int)this.jSpinnerTotalHabi.getValue())-2)==3){
                         if(this.jRadioButtonPersonaExtr2.isSelected()){
-                            totOcu=((int)this.jSpinnerTotalHabi.getValue())+2;
-                        }else{
-                            JOptionPane.showMessageDialog(this,"Campo de total de Ocupantes \nNO marco los Extra Bien","Check In Incorrecto", WARNING_MESSAGE);
-                            return;
-                        }
-                    }
-                }
-                JOptionPane.showMessageDialog(this,"Registro Exitoso...","Exitoso", PLAIN_MESSAGE);
-            }else{
-                JOptionPane.showMessageDialog(this,"Campo de total de Ocupantes de la Habitación","Check In Incorrecto", WARNING_MESSAGE);
-                return;
-            }
-            
-        }else if(3==3){
-            if(((int)this.jSpinnerTotalHabi.getValue())<=8 && ((int)this.jSpinnerTotalHabi.getValue())>0){
-                if(((int)this.jSpinnerTotalHabi.getValue())<=6){
-                    if(!this.jRadioButtonPersonaExtr1.isSelected() && !this.jRadioButtonPersonaExtr2.isSelected()){
-                        totOcu=((int)this.jSpinnerTotalHabi.getValue());
-                    }else{
-                        JOptionPane.showMessageDialog(this,"Campo de total de Ocupantes \nNO marco los Extra Bien","Check In Incorrecto", WARNING_MESSAGE);
-                        return;
-                    }
-                }else{
-                    if((((int)this.jSpinnerTotalHabi.getValue())-6)==1){
-                        if(this.jRadioButtonPersonaExtr1.isSelected()){
-                            totOcu=((int)this.jSpinnerTotalHabi.getValue())+1;
-                        }else{
-                            JOptionPane.showMessageDialog(this,"Campo de total de Ocupantes \nNO marco los Extra Bien","Check In Incorrecto", WARNING_MESSAGE);
-                            return;
-                        }
-                    }else if((((int)this.jSpinnerTotalHabi.getValue())-6)==2){
-                        if(this.jRadioButtonPersonaExtr2.isSelected()){
-                            totOcu=((int)this.jSpinnerTotalHabi.getValue())+2;
+                            totOcu=((int)this.jSpinnerTotalHabi.getValue());
                         }else{
                             JOptionPane.showMessageDialog(this,"Campo de total de Ocupantes \nNO marco los Extra Bien","Check In Incorrecto", WARNING_MESSAGE);
                             return;
@@ -241,16 +256,55 @@ public class PanelCheckIn extends JPanel{
                 return;
             }
         }
+        System.out.println("Total ocupantes= "+totOcu);
+        jDateChooserSal.setDateFormatString("yyyy/MM/dd");
+        jDateChooserEntrada.setDateFormatString("yyyy/MM/dd");
+        fechaSalida=((JTextField)(this.jDateChooserSal.getDateEditor().getUiComponent())).getText();
+        fechaEntrada=((JTextField)(this.jDateChooserEntrada.getDateEditor().getUiComponent())).getText();
         //Cliente(String nomHuesped, String cdOrigen, String fechaIng, String fechaSal, Vector<String> servExtr, Calendar actual)
-        Cliente cliente=new Cliente(nom,cd,fechaIn, fecSal, service,Ingre,totOcu);
+        Cliente cliente=new Cliente(nom,cd,fechaEntrada, fechaSalida, service,Ingre,totOcu);
         /*System.out.println("Clienete...");
         System.out.println("Nombre: "+cliente.getNomHuesped());
         System.out.println("Ciudad Origen: "+cliente.getCdOrigen());
         System.out.println("Fecha Ingreso: "+cliente.getFechaIng());
         System.out.println("Fecha Salida: "+cliente.getFechaSal());
         System.out.println("Total Ocupantes: "+cliente.getTotOcupantes());
-        System.out.println("Fecha Servicios: "+cliente.getServExtr());*/
-        
+        System.out.println("Servicios: "+cliente.getServExtr());*/
+        insertar(cliente);
+    }
+    
+    private void insertar(Cliente cl){
+        int tintoreria=0,carro=0,spa=0,bar=0,antro=0,niniera=0,cuarto=0,estado=1;
+        if(this.jCheckBoxServCuarto.isSelected()){
+            cuarto=1;
+        }
+        if(this.jCheckBoxServAntro.isSelected()){
+            antro=1; 
+        }
+        if(this.jCheckBoxServBar.isSelected()){
+            bar=1;  
+        }
+        if(this.jCheckBoxServCarro.isSelected()){
+            carro=1;    
+        }
+        if(this.jCheckBoxServNiñera.isSelected()){
+            niniera=1;    
+        }
+        if(this.jCheckBoxServSPA.isSelected()){
+            spa=1;    
+        }
+        if(this.jCheckBoxServTintoreria.isSelected()){
+            tintoreria=1;   
+        }
+       
+        String parte1 = "Insert into habitacion (numero, estado, servcuarto, servbar, servspa, servninera, servtintoreria, servantro, servcarro, tipo, costo, totpersonas, piso, nombre, cdorigen, fechaingreso, fechasalida,pos) VALUES (";
+        String parte2="'"+habitaciones.get(pos).getNumero()+"','"+estado+"','"+
+                cuarto+"','"+bar+"','"+spa+"','"+niniera+"','"+tintoreria+"','"+antro+"','"+carro+"','"+habitaciones.get(pos).getTipo()+"','"+
+                habitaciones.get(pos).getCosto()+"','"+cl.totOcupantes+"','"+habitaciones.get(pos).getPiso()+"','"+cl.getNomHuesped()+
+                "','"+cl.getCdOrigen()+"','"+cl.getFechaIng()+"','"+cl.getFechaSal()+"','"+pos+"')";
+        String query=parte1+parte2;
+        int j=this.conn.Update(query);//Ejecuta accion de registro en la BD hotel en la tabla habitacion
+        System.out.println("Numero de registros afectados por la accion: "+j);
     }
     
     private void jButtonRegistrarActionPerformed(ActionEvent evt) {                                                 
@@ -259,14 +313,17 @@ public class PanelCheckIn extends JPanel{
     } 
 
     private void initComponents() {
-        Ingre=Calendar.getInstance();
+        
+        /*Ingre=Calendar.getInstance();
         if((Ingre.get(Calendar.MONTH)+1)<10){
             fechaIn=Ingre.get(Calendar.DAY_OF_MONTH)+"/0"+(Ingre.get(Calendar.MONTH)+1)+"/"+Ingre.get(Calendar.YEAR);
         }else{
             fechaIn=Ingre.get(Calendar.DAY_OF_MONTH)+"/"+(Ingre.get(Calendar.MONTH)+1)+"/"+Ingre.get(Calendar.YEAR);
             
         }
-        
+        Ingreso=Ingre.getTime();
+        //System.out.println(Ingreso);
+        */
         try{
             playa=ImageIO.read(new File("src/imagenes/playa2.jpg"));
             escudo=ImageIO.read(new File("src/imagenes/hotel.jpg"));
@@ -319,6 +376,37 @@ public class PanelCheckIn extends JPanel{
             jLabelTotalOcu.setFont(fontt);
             jLabelTotalOcu.setForeground(new Color(102,255,102));
             
+            fontt3=Font.createFont(Font.TRUETYPE_FONT, new File("src/fonts/KGHolocene.ttf"));
+            fontt3=fontt3.deriveFont(14f);
+            jLabelUbicacion=new JLabel("Av Tlahuac #1784, Colonia Churubusco, Delegación Coyoacan, CDMX");
+            jLabelUbicacion.setFont(fontt3);
+            jLabelUbicacion.setBackground(new Color(102,255,255));
+            jLabelUbicacion.setOpaque(true);
+            
+            ImageIcon iconoReg= new ImageIcon("src/imagenes/Regresa.png");
+            this.jButtonRegresar=new JButton("Regresar",iconoReg);
+            this.jButtonRegresar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            this.jButtonRegresar.setFocusable(false);
+            this.jButtonRegresar.setBorder(new BevelBorder(BevelBorder.LOWERED));
+            this.jButtonRegresar.addMouseListener(new MouseAdapter(){
+           
+           
+                @Override
+                public void mouseEntered(MouseEvent ev){
+
+                    jButtonRegresar.setBackground(Color.GREEN);
+                }
+                public void mouseExited(MouseEvent ev){
+                    jButtonRegresar.setBackground(Color.LIGHT_GRAY);
+
+                }
+                public void mouseReleased(MouseEvent evt){
+                    cerrarVentana();
+                    new EstadoHabitaciones().setVisible(true);
+                }
+
+            });
+            
             ImageIcon iconoCheck= new ImageIcon("src/imagenes/registrar.png");
             jButtonRegistrar = new JButton("Registrar",iconoCheck);
             jButtonRegistrar.setForeground(Color.RED);
@@ -345,9 +433,17 @@ public class PanelCheckIn extends JPanel{
                 }
         });
             
+            
             jSpinnerTotalHabi = new JSpinner();
+            
+            fontt2 = new Font("Consolas", 1, 14);
+            
+            jDateChooserEntrada = new JDateChooser();
+            jDateChooserEntrada.setName("JDateChooserEntrada");
+            jDateChooserEntrada.setFont(fontt2);
             jDateChooserSal = new JDateChooser();
             jDateChooserSal.setName("JDateChooserSal");
+            jDateChooserSal.setFont(fontt2);
             
             buttonGroupPersonExtras = new ButtonGroup();
             
@@ -373,15 +469,15 @@ public class PanelCheckIn extends JPanel{
             jRadioButtonNinguno.setForeground(new Color(0,255,255));
             buttonGroupPersonExtras.add(jRadioButtonNinguno);
             
-            fontt2 = new Font("Arial Black", 1, 15);
             
             jTextFieldNomHuesped = new JTextField("");
-             jTextFieldNomHuesped.setFont(sizeFont_2);
+            jTextFieldNomHuesped.setFont(sizeFont_2);
             jTextFieldCdOrigen = new JTextField("");
             jTextFieldCdOrigen.setFont(sizeFont_2);
             jTextFieldFechaIngr = new JTextField();
             jTextFieldFechaIngr.setText(fechaIn);
             jTextFieldFechaIngr.setFont(sizeFont_2);
+            jTextFieldFechaIngr.setEditable(false);
             
             font3=new File("src/fonts/Salacia.otf");
             fuente3=Font.createFont(Font.TRUETYPE_FONT, font3);
@@ -433,13 +529,14 @@ public class PanelCheckIn extends JPanel{
         this.add(this.jLabelFechaSal);
         this.add(this.jLabelTotalOcu);
         this.add(this.jDateChooserSal);
+        this.add(this.jDateChooserEntrada);
         this.add(this.jSpinnerTotalHabi);
         this.add(this.jRadioButtonPersonaExtr1);
         this.add(this.jRadioButtonPersonaExtr2);
         this.add(this.jRadioButtonNinguno);
         this.add(this.jTextFieldNomHuesped);
         this.add(this.jTextFieldCdOrigen);
-        this.add(this.jTextFieldFechaIngr);
+        this.add(this.jLabelUbicacion);
         this.add(this.jCheckBoxServCuarto);
         this.add(this.jCheckBoxServAntro);
         this.add(this.jCheckBoxServBar);
@@ -448,7 +545,7 @@ public class PanelCheckIn extends JPanel{
         this.add(this.jCheckBoxServTintoreria);
         this.add(this.jCheckBoxServCarro);
         this.add(this.jButtonRegistrar);
-        
+        this.add(this.jButtonRegresar);
         jSpinnerTotalHabi.getAccessibleContext().setAccessibleName("");
     }
     
@@ -461,6 +558,7 @@ public class PanelCheckIn extends JPanel{
         g.drawImage(bar,(dimensiones.width/2),0,(dimensiones.width/2),(dimensiones.height/2), null);
         //JButton
         this.jButtonRegistrar.setBounds((dimensiones.width/2)-360, (dimensiones.height/2)+235, 150, 50);
+        this.jButtonRegresar.setBounds((dimensiones.width/2)+285, (dimensiones.height/2)-290, 130, 50);
         //JRadioButton
         
         //JRadioGroup
@@ -476,14 +574,15 @@ public class PanelCheckIn extends JPanel{
         this.jLabelFechaIng.setBounds((dimensiones.width/2)-410, (dimensiones.height/2)+170, 160, 30);
         this.jLabelFechaSal.setBounds((dimensiones.width/2)+10, (dimensiones.height/2)-115, 160, 30);
         this.jLabelServicios.setBounds((dimensiones.width/2)+115, (dimensiones.height/2), 130, 30);
+        this.jLabelUbicacion.setBounds((dimensiones.width/2)-180, (dimensiones.height/2)+250, 580, 25);
         //JSpinner
         this.jSpinnerTotalHabi.setBounds((dimensiones.width/2)-100, (dimensiones.height/2)-50, 70, 50);
         //JTextField
         jTextFieldNomHuesped.setBounds((dimensiones.width/2)-225, (dimensiones.height/2)-190, 250, 35);
         jTextFieldCdOrigen.setBounds((dimensiones.width/2)-225, (dimensiones.height/2)-150, 250, 35);
-        jTextFieldFechaIngr.setBounds((dimensiones.width/2)-275, (dimensiones.height/2)+170, 175, 35);
         //JDateChooser
-        jDateChooserSal.setBounds((dimensiones.width/2)+165, (dimensiones.height/2)-115, 109, 30);
+        jDateChooserEntrada.setBounds((dimensiones.width/2)-275, (dimensiones.height/2)+170, 120, 30);
+        jDateChooserSal.setBounds((dimensiones.width/2)+165, (dimensiones.height/2)-115, 120, 30);
         //JCheckBox
         this.jCheckBoxServCuarto.setBounds((dimensiones.width/2)+10, (dimensiones.height/2)+30, 200, 30);
         this.jCheckBoxServBar.setBounds((dimensiones.width/2)+10, (dimensiones.height/2)+60, 200, 30);
@@ -495,6 +594,15 @@ public class PanelCheckIn extends JPanel{
         
         this.setOpaque(false);
         super.paint(g);
+    }
+    private void cerrarVentana(){
+        SwingUtilities.getWindowAncestor(this).dispose();
+        
+    }
+    
+    private void cerrar(){
+        SwingUtilities.getWindowAncestor(this).dispose();
+         new EstadoHabitaciones().setVisible(true);
     }
     
 }

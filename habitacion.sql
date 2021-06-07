@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-06-2021 a las 05:55:24
+-- Tiempo de generación: 07-06-2021 a las 18:54:38
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.5
 
@@ -45,16 +45,18 @@ CREATE TABLE `habitacion` (
   `cdorigen` varchar(40) NOT NULL,
   `fechaingreso` date NOT NULL,
   `fechasalida` date NOT NULL,
-  `fechaactual` date NOT NULL
+  `pos` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `habitacion`
 --
 
-INSERT INTO `habitacion` (`numero`, `estado`, `servcuarto`, `servbar`, `servspa`, `servninera`, `servtintoreria`, `servantro`, `servcarro`, `tipo`, `costo`, `totpersonas`, `piso`, `nombre`, `cdorigen`, `fechaingreso`, `fechasalida`, `fechaactual`) VALUES
-(105, 1, 1, 0, 0, 1, 0, 1, 1, 1, 500, 2, 1, 'Alicia Huerta', 'AGS', '2021-06-22', '2021-06-24', '2021-06-04'),
-(205, 1, 1, 0, 0, 0, 0, 0, 1, 1, 500, 1, 2, 'Abel Diaz Moreno', 'Zacatecas', '2021-06-01', '2021-06-08', '2021-06-04');
+INSERT INTO `habitacion` (`numero`, `estado`, `servcuarto`, `servbar`, `servspa`, `servninera`, `servtintoreria`, `servantro`, `servcarro`, `tipo`, `costo`, `totpersonas`, `piso`, `nombre`, `cdorigen`, `fechaingreso`, `fechasalida`, `pos`) VALUES
+(104, 1, 1, 0, 1, 0, 0, 1, 0, 1, 500, 1, 1, 'Cristobal rivera', 'Aguascalientes', '2021-06-04', '2021-06-19', 4),
+(105, 1, 1, 0, 0, 1, 0, 1, 1, 1, 500, 2, 1, 'Alicia Huerta', 'AGS', '2021-06-22', '2021-06-24', 5),
+(205, 1, 1, 0, 0, 0, 0, 1, 1, 1, 500, 2, 2, 'Abel Diaz Moreno', 'Zacatecas', '2021-06-01', '2021-06-20', 20),
+(208, 1, 0, 1, 1, 1, 1, 1, 1, 2, 1000, 2, 2, 'Heriberto Martinez', 'Puebla', '2021-06-18', '2021-06-19', 23);
 
 --
 -- Índices para tablas volcadas
