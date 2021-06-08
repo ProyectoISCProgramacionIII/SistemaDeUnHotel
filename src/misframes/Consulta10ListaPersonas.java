@@ -165,7 +165,9 @@ public class Consulta10ListaPersonas extends javax.swing.JFrame {
         jLabelTitulo.setBackground(new java.awt.Color(255, 255, 153));
         jLabelTitulo.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabelTitulo.setForeground(new java.awt.Color(0, 0, 0));
-        jLabelTitulo.setText("Lista de personas hospedadas en el hotel");
+        jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/hotelversioncircular.png"))); // NOI18N
+        jLabelTitulo.setText("LISTA DE PERSONAS HOSPEDADAS EN EL HOTEL");
         jLabelTitulo.setAlignmentX(0.5F);
         jLabelTitulo.setOpaque(true);
         jPanel1.add(jLabelTitulo, java.awt.BorderLayout.PAGE_START);

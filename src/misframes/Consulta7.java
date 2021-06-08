@@ -87,11 +87,14 @@ public class Consulta7 extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Elephant", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("consulta habitacion y piso de huesped");
+        jLabel1.setText("CONSULTA HABITACION Y PISO DE UN HUESPED");
         jLabel1.setOpaque(true);
         jPanel1.add(jLabel1, java.awt.BorderLayout.PAGE_START);
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 102));
+
         jLabelNombre.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jLabelNombre.setForeground(new java.awt.Color(0, 0, 0));
         jLabelNombre.setText("Ingresa nombre del huesped.Presiona enter para confirmar");
         jPanel4.add(jLabelNombre);
 

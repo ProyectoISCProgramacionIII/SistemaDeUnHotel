@@ -37,7 +37,7 @@ import misframes.RegClientes;
 
 
 public class PanelEstadoHabitaciones extends JPanel{
-    
+    private MySqlConn conn;
     private ArrayList <JButton> hab;
     private JPanel jPanelArriba,jPanelCentro,jPanelCentroIzq,jPanelCentroDer,jPanelCentroIzqIzq,jPanelCentroDerDer,jPanelPiso1,jPanelPiso2,jPanelSeparador;
     private JLabel jLabelPiso1,jLabelPiso2,jLabelTitulo;
@@ -47,10 +47,11 @@ public class PanelEstadoHabitaciones extends JPanel{
     private BufferedImage fondo=null;
     int i;
     public PanelEstadoHabitaciones() {
-       
+        new Hotel();
+       iniciaArray();
        initComponents();
         inicializaArray();
-    
+        this.conn=new MySqlConn();
     
     }
     
@@ -195,6 +196,49 @@ public class PanelEstadoHabitaciones extends JPanel{
        
        
        
+    }
+    
+    private void iniciaArray(){
+        String query="select * from habitacion";
+        
+        try{
+            this.conn.Consult(query);
+            
+            int n=0,pos=0;
+            this.conn.rs.last();
+            n=this.conn.rs.getRow();
+            this.conn.rs.first();
+            if(n>0){
+                
+                for (int j = 0; j < n; j++) {
+                    
+                    
+                    pos=this.conn.rs.getInt(18);
+                    Hotel.habitaciones.get(pos).setEstado(true);
+                    this.conn.rs.next();
+                    
+                }
+                
+                
+            }else{
+                for (int j = 0; j < Hotel.habitaciones.size(); j++) {
+                    
+                    
+                    Hotel.habitaciones.get(pos).setEstado(false);
+                    
+                    
+                }
+                
+                
+            }
+            
+            
+        }catch(Exception ex){
+            
+        }
+        
+        
+        
     }
     
     private void cerrarVentana(){

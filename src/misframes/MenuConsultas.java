@@ -317,7 +317,7 @@ public class MenuConsultas extends javax.swing.JFrame {
         
     });
         ////////////////////////////////////////////////////////////////////////////////////////////
-         this.jButtonConsulta9=new JButton("Consultar habitaciones de un piso");
+         this.jButtonConsulta9=new JButton("Habitaciones libres en un piso");
         this.jButtonConsulta9.setBounds(650, 220, 300, 50);
         this.jButtonConsulta9.setCursor(new Cursor(Cursor.HAND_CURSOR));
           this.jButtonConsulta9.setBorder(new BevelBorder(BevelBorder.LOWERED));
@@ -339,6 +339,9 @@ public class MenuConsultas extends javax.swing.JFrame {
                 
             }
         public void mouseReleased(MouseEvent ev){
+            
+            dispose();
+            new Consulta9().setVisible(true);
             
         }
         
@@ -372,7 +375,7 @@ public class MenuConsultas extends javax.swing.JFrame {
         
     });
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-         this.jButtonConsulta11=new JButton("Extra");
+         this.jButtonConsulta11=new JButton("Restaurante");
         this.jButtonConsulta11.setBounds(650, 340, 300, 50);
         this.jButtonConsulta11.setCursor(new Cursor(Cursor.HAND_CURSOR));
           this.jButtonConsulta11.setBorder(new BevelBorder(BevelBorder.LOWERED));
@@ -394,6 +397,9 @@ public class MenuConsultas extends javax.swing.JFrame {
                 
             }
         public void mouseReleased(MouseEvent ev){
+            
+            dispose();
+            new Consulta11Comida().setVisible(true);
             
         }
         
