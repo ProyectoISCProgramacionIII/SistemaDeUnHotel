@@ -8,17 +8,29 @@ package misframes;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
 import misclases.Cliente;
 import static misclases.Hotel.habitaciones;
 
@@ -33,10 +45,12 @@ public class Voucher extends javax.swing.JFrame {
      */
     private JTextArea jTextAreaVoucher;
     private JPanel jPanelBase, jPanelImagen;
+    private JButton jButtonContinuar;
     private BufferedImage logo;
-    private Font font;
+    private ImageIcon IconContinuar;
+    private Font font, font2;
     private Cliente cliente=new Cliente();
-    private int tipo,pos;
+    private int tipo,pos; 
     
     public Voucher(Cliente cliente, int ti, int posi) {
         this.cliente = cliente;
@@ -67,6 +81,18 @@ public class Voucher extends javax.swing.JFrame {
     }
     
     private void iniciarPaneles(){
+        try {
+            font2=Font.createFont(Font.TRUETYPE_FONT, new File("src/fonts/Catskin.otf"));
+            font2=font2.deriveFont(18f);
+            IconContinuar=new ImageIcon("src/imagenes/Continuar.png");
+        
+        } catch (FontFormatException ex) {
+            Logger.getLogger(Voucher.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Voucher.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
         jPanelBase=new JPanel(){
             @Override
                 public void paint(Graphics g){
@@ -96,13 +122,34 @@ public class Voucher extends javax.swing.JFrame {
                     super.paint(g);
                 }
         };
+        
         font=new Font("Consolas", 1, 15);
+        jButtonContinuar=new JButton("Continuar",IconContinuar);
+        jButtonContinuar.setFont(font2);
+        jButtonContinuar.setBounds((dim.width/2)-80, (dim.height/2)-120, 150, 38);
+        jButtonContinuar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jButtonContinuar.setFocusable(false);
+        jButtonContinuar.setBackground(Color.PINK);
+        jButtonContinuar.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseEntered(MouseEvent ev){
+                jButtonContinuar.setBackground(Color.GREEN);
+            }
+            public void mouseExited(MouseEvent ev){
+                jButtonContinuar.setBackground(Color.PINK);
+            }
+            public void mouseReleased(MouseEvent evt){
+                cerrarVentana();
+            }
+
+        });
+        
         this.jPanelImagen.setPreferredSize(new Dimension(300,200));
         this.jPanelImagen.setOpaque(false);
-        this.jPanelImagen.setBounds((dim.width/2)+150, (dim.height/2)-145, 300, 200);
+        this.jPanelImagen.setBounds((dim.width/2)+250, (dim.height/2)-340, 300, 200);
         this.jTextAreaVoucher=new JTextArea();
         this.jTextAreaVoucher.setEditable(false);
-        this.jTextAreaVoucher.setPreferredSize(new Dimension(600,420));
+        this.jTextAreaVoucher.setPreferredSize(new Dimension(600,400));
         this.jTextAreaVoucher.setBounds((dim.width/2)-345,(dim.height)-150, 600, 600);
         this.jTextAreaVoucher.setFont(font);
         this.jTextAreaVoucher.setBackground(new Color(255,255,153));
@@ -111,6 +158,8 @@ public class Voucher extends javax.swing.JFrame {
     }
     
     private void llenarVoucher(){
+        
+        System.out.println("Fecha Ingreso: "+cliente.getFechaIng()+"   Fecha Salida: "+cliente.getFechaSal());
         String hotel="\t\t\t HOTEL WOLFSBURG\n";
         String lema="\t\tEl Arte De Cumplir Tu Más Altas Expectativas\n";
         String ubicacion="     Av Tlahuac #1784, Colonia Churubusco, Delegación Coyoacan, CDMX\n\n\n";
@@ -120,7 +169,7 @@ public class Voucher extends javax.swing.JFrame {
         String fechaSal="Fechas de Salida: "+cliente.getFechaSal()+"\n\n";
         String numeroHab="Número de Habitación: "+habitaciones.get(pos).getNumero();
         String piso="   Piso: "+habitaciones.get(pos).getPiso()+"\n\n";
-        String tipo=" Tipo de Habitación: Tipo "+habitaciones.get(pos).getTipo();
+        String tipo="Tipo de Habitación: Tipo "+habitaciones.get(pos).getTipo();
         int lim=0,extra=0;
         if(habitaciones.get(pos).getTipo()==1){
             lim=3;
@@ -139,11 +188,16 @@ public class Voucher extends javax.swing.JFrame {
         this.jTextAreaVoucher.setText(info);
     }
     
+    private void cerrarVentana(){
+        this.dispose();
+        new MenuPrincipal().setVisible(true);
+    }
+    
     private void iniciarComponentes(){
-        Dimension dim=this.getSize();
+        
         this.jPanelBase.add(this.jPanelImagen);
         this.jPanelBase.add(this.jTextAreaVoucher);
-        
+        this.jPanelBase.add(this.jButtonContinuar);
         
     }
     /**

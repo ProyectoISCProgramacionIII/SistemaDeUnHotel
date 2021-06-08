@@ -68,7 +68,7 @@ public class PanelCheckIn extends JPanel{
     private File font = null,font1=null,font2=null,font3;
     private BufferedImage playa,escudo,spa,bar;
     private int numero;
-    
+    private Cliente cliente;
     private int tipo,pos,extr=0;
     
     public PanelCheckIn(int ti, int po) {
@@ -301,7 +301,7 @@ public class PanelCheckIn extends JPanel{
         fechaSalida=((JTextField)(this.jDateChooserSal.getDateEditor().getUiComponent())).getText();
         fechaEntrada=((JTextField)(this.jDateChooserEntrada.getDateEditor().getUiComponent())).getText();
         //Cliente(String nomHuesped, String cdOrigen, String fechaIng, String fechaSal, Vector<String> servExtr, Calendar actual)
-        Cliente cliente=new Cliente(nom,cd,fechaEntrada, fechaSalida, service,Ingre,totOcu,totDias,extr);
+        cliente=new Cliente(nom,cd,fechaEntrada, fechaSalida, service,Ingre,totOcu,totDias,extr);
         /*System.out.println("Clienete...");
         System.out.println("Nombre: "+cliente.getNomHuesped());
         System.out.println("Ciudad Origen: "+cliente.getCdOrigen());
@@ -312,7 +312,8 @@ public class PanelCheckIn extends JPanel{
         System.out.println("Total de días a quedarse: "+cliente.getTotDias());
         System.out.println("Personas Extra= "+cliente.getPersonasExtr());*/
         insertar(cliente);
-        new Voucher(cliente,tipo,pos).setVisible(true);
+        
+        cerrarVentana();
     }
     
     private void insertar(Cliente cl){
@@ -688,7 +689,7 @@ public class PanelCheckIn extends JPanel{
     }
     private void cerrarVentana(){
         SwingUtilities.getWindowAncestor(this).dispose();
-        
+        new Voucher(cliente,tipo,pos).setVisible(true);
     }
     
     private void cerrar(){
