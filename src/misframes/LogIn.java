@@ -21,6 +21,7 @@ public class LogIn extends javax.swing.JFrame {
      * Creates new form LogIn
      */
     public LogIn() {
+        
         initComponents();
         this.getContentPane().add(new PanelLogIn(new EventoCerrar()),BorderLayout.CENTER);
         this.setSize(1020, 640);
