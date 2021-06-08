@@ -46,11 +46,13 @@ public class PanelEstadoHabitaciones extends JPanel{
     private BufferedImage fondo=null;
     int i;
     public PanelEstadoHabitaciones() {
-        new Hotel();
-       iniciaArray();
-       initComponents();
-        inicializaArray();
+      
         this.conn=new MySqlConn();
+       initComponents();
+        iniciaArray();
+        inicializaArray();
+       
+       
     
     }
     
@@ -235,7 +237,7 @@ public class PanelEstadoHabitaciones extends JPanel{
             
             
         }catch(Exception ex){
-            
+            System.err.println("Error");
         }
         
         

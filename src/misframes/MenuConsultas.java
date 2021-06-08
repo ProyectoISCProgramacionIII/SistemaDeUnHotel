@@ -144,6 +144,9 @@ public class MenuConsultas extends javax.swing.JFrame {
                 
             }
         public void mouseReleased(MouseEvent ev){
+            dispose();
+            new ConsultaIngresos().setVisible(true);
+            
             
         }
         
@@ -312,6 +315,9 @@ public class MenuConsultas extends javax.swing.JFrame {
                 
             }
         public void mouseReleased(MouseEvent ev){
+            
+            dispose();
+            new ConsultaNombreHuesped().setVisible(true);
             
         }
         

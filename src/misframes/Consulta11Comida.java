@@ -165,6 +165,7 @@ public class Consulta11Comida extends javax.swing.JFrame {
         jPanel6.add(jLabelTipoComida, java.awt.BorderLayout.PAGE_START);
         jPanel6.add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
+        jPanel4.setBackground(new java.awt.Color(255, 204, 204));
         jPanel4.setPreferredSize(new java.awt.Dimension(571, 50));
 
         jLabelComida1.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N

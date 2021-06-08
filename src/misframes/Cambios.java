@@ -597,7 +597,7 @@ public class Cambios extends javax.swing.JFrame {
     
     private void renuevaTextArea(){
         String cadena="";
-         String query="select * from habitacion ORDER BY nombre ASC";
+         String query="select * from habitacion ORDER BY numero ASC";
          try{
             this.conn.Consult(query);
         }catch(Exception ex){
