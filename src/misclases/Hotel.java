@@ -64,7 +64,7 @@ public class Hotel {
             }catch(Exception ex){
                 
             }
-                int n;
+                int n,pos;
             try{
                 conn.rs.last();
                 n=conn.rs.getRow();
@@ -72,19 +72,8 @@ public class Hotel {
                 if(n>0){
                     for (int i = 0; i < n; i++) {
                         
-                        numero=conn.rs.getInt(1);
-                        piso=conn.rs.getInt(13);
-                        cliente=new Cliente();
-                        if(piso==1){
-                            
-                            Hotel.habitaciones.get(numero-100).setEstado(true);
-                            
-                        }else{
-                            Hotel.habitaciones.get((numero-200)+15).setEstado(true);
-                           
-                            
-                        }
-                        
+                        pos=conn.rs.getInt(18);
+                        Hotel.habitaciones.get(pos).setEstado(true);
                         conn.rs.next();
                     }
                     

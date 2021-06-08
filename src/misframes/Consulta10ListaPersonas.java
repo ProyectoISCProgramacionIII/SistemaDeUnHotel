@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import misclases.MySqlConn;
 
@@ -97,10 +98,9 @@ public class Consulta10ListaPersonas extends javax.swing.JFrame {
         try{
             this.conn.Consult(query);
             this.conn.rs.last();
-            n=this.conn.rs.getRow();
-           
+            n=this.conn.rs.getRow(); 
             this.conn.rs.first();
-          
+          if(n>0){
             for (int i = 0; i < n; i++) {
                 
                 this.lista.add(new Informacion(this.conn.rs.getString(14),this.conn.rs.getInt(1)));
@@ -108,9 +108,13 @@ public class Consulta10ListaPersonas extends javax.swing.JFrame {
                 this.conn.rs.next();
               
             }
+            
+          }else{
+              JOptionPane.showMessageDialog(this, "No existen datos que mostrar");
+          }
         }catch(Exception ex){
                     
-                    System.err.println("error");
+             //       System.err.println("error");
                     
          }
         
@@ -161,7 +165,9 @@ public class Consulta10ListaPersonas extends javax.swing.JFrame {
         jLabelTitulo.setBackground(new java.awt.Color(255, 255, 153));
         jLabelTitulo.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabelTitulo.setForeground(new java.awt.Color(0, 0, 0));
-        jLabelTitulo.setText("Lista de personas hospedadas en el hotel");
+        jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/hotelversioncircular.png"))); // NOI18N
+        jLabelTitulo.setText("LISTA DE PERSONAS HOSPEDADAS EN EL HOTEL");
         jLabelTitulo.setAlignmentX(0.5F);
         jLabelTitulo.setOpaque(true);
         jPanel1.add(jLabelTitulo, java.awt.BorderLayout.PAGE_START);
