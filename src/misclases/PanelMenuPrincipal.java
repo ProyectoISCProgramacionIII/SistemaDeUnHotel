@@ -31,6 +31,7 @@ import misframes.EstadoHabitaciones;
 import misframes.MenuPrincipal;
 //=======
 import misframes.CheckIn;
+import misframes.Checkout;
 import misframes.MenuConsultas;
 //>>>>>>> JuanCarlos3
 
@@ -59,7 +60,7 @@ public class PanelMenuPrincipal extends JPanel{
    private void initComponents(){
        
         try {
-            imagen=ImageIO.read(new File("src/imagenes/Playa.jpg"));
+            imagen=ImageIO.read(new File("src/imagenes/Hotel_Wolfsburg.jpg"));
             alegria=ImageIO.read(new File("src/imagenes/Alegria_2.png"));
             escudo=ImageIO.read(new File("src/imagenes/hotel.jpg"));
             font=new File("src/fonts/Alba.ttf");
@@ -116,7 +117,9 @@ public class PanelMenuPrincipal extends JPanel{
             //Agregamos eventos 
             jButtonCheckOut.addMouseListener(new MouseAdapter() {
             public void mouseReleased(MouseEvent evt) {
+                cerrarVentana();
                 
+                new Checkout().setVisible(true);
                 //JOptionPane.showMessageDialog(null, "Hi", "hi", JOptionPane.WARNING_MESSAGE);
                  
             }
@@ -266,9 +269,9 @@ public class PanelMenuPrincipal extends JPanel{
             
             g.drawImage(imagen,0, 0, dimensiones.width, dimensiones.height, null);
             //g.drawImage(alegria, (dimensiones.width/2)+50, 100, 200, 200, null);
-            g.drawImage(escudo, (dimensiones.width/2)-60, (dimensiones.height)-515, 200, 170, null);
+            g.drawImage(escudo, 10, (dimensiones.height)-515, 200, 170, null);
             g.setFont(sizeFont_2);
-            g.setColor(Color.BLACK);
+            g.setColor(Color.WHITE);
             g.drawString("HOTEL WOLFSBURG", (dimensiones.width/2)-505, 80);
             
             jButtonCheckIn.setBounds((dimensiones.width/2)-60,(dimensiones.height)-350, 150, 50);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-06-2021 a las 05:55:24
+-- Tiempo de generación: 09-06-2021 a las 00:59:13
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.5
 
@@ -45,16 +45,25 @@ CREATE TABLE `habitacion` (
   `cdorigen` varchar(40) NOT NULL,
   `fechaingreso` date NOT NULL,
   `fechasalida` date NOT NULL,
-  `fechaactual` date NOT NULL
+  `pos` int(11) NOT NULL,
+  `totDias` int(11) NOT NULL,
+  `personasExtr` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `habitacion`
 --
 
-INSERT INTO `habitacion` (`numero`, `estado`, `servcuarto`, `servbar`, `servspa`, `servninera`, `servtintoreria`, `servantro`, `servcarro`, `tipo`, `costo`, `totpersonas`, `piso`, `nombre`, `cdorigen`, `fechaingreso`, `fechasalida`, `fechaactual`) VALUES
-(105, 1, 1, 0, 0, 1, 0, 1, 1, 1, 500, 2, 1, 'Alicia Huerta', 'AGS', '2021-06-22', '2021-06-24', '2021-06-04'),
-(205, 1, 1, 0, 0, 0, 0, 0, 1, 1, 500, 1, 2, 'Abel Diaz Moreno', 'Zacatecas', '2021-06-01', '2021-06-08', '2021-06-04');
+INSERT INTO `habitacion` (`numero`, `estado`, `servcuarto`, `servbar`, `servspa`, `servninera`, `servtintoreria`, `servantro`, `servcarro`, `tipo`, `costo`, `totpersonas`, `piso`, `nombre`, `cdorigen`, `fechaingreso`, `fechasalida`, `pos`, `totDias`, `personasExtr`) VALUES
+(100, 1, 1, 0, 0, 1, 0, 0, 1, 1, 500, 2, 1, 'Manuel Gonzales', 'Merida,Yucatan', '2021-06-09', '2021-06-14', 0, 5, 1),
+(101, 1, 1, 1, 1, 1, 1, 1, 1, 1, 500, 2, 1, 'Gabriel Esparza Garduño', 'Michoacan', '2021-06-10', '2021-06-18', 1, 8, 1),
+(102, 1, 1, 1, 0, 0, 0, 1, 1, 1, 500, 3, 1, 'Juan Carlos Alonso', 'Ciudad De México', '2021-06-27', '2021-06-30', 2, 3, 2),
+(104, 1, 1, 0, 1, 0, 0, 1, 0, 1, 500, 1, 1, 'Cristobal rivera', 'Aguascalientes', '2021-06-04', '2021-06-19', 4, 15, 0),
+(105, 1, 1, 0, 0, 1, 0, 1, 1, 1, 500, 2, 1, 'Alicia Huerta', 'AGS', '2021-06-22', '2021-06-24', 5, 2, 1),
+(200, 1, 0, 0, 0, 0, 0, 1, 0, 1, 500, 2, 2, 'Alexander Marquez', 'Guadalajara', '2021-06-06', '2021-06-11', 15, 5, 1),
+(205, 1, 0, 1, 0, 0, 0, 1, 1, 1, 500, 3, 2, 'Abel Diaz Moreno', 'Zacatecas', '2021-06-01', '2021-06-02', 20, 1, 2),
+(208, 1, 0, 1, 1, 1, 1, 1, 1, 2, 1000, 2, 2, 'Heriberto Martinez', 'Puebla', '2021-06-18', '2021-06-19', 23, 1, 0),
+(209, 1, 1, 0, 0, 0, 0, 0, 0, 3, 1500, 1, 2, 'Maria Clara Duarte Herrera', 'Mazatlan', '2021-05-06', '2021-05-21', 24, 15, 0);
 
 --
 -- Índices para tablas volcadas

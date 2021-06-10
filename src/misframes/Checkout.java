@@ -5,25 +5,18 @@
  */
 package misframes;
 
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import misclases.MySqlConn;
-
 /**
  *
  * @author User
  */
 public class Checkout extends javax.swing.JFrame {
 
-    MySqlConn conn;
-    
+    /**
+     * Creates new form Checkout
+     */
     public Checkout() {
-        this.conn=new MySqlConn();
         initComponents();
     }
-
-   
-   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,292 +27,33 @@ public class Checkout extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelNumHab = new javax.swing.JLabel();
-        jTextFieldHabitacion = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jTextFieldFechaIngreso = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jTextFieldFechaSalida = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jTextFieldTotalDias = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        fondoPantalla = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        FondoPantalla = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabelNumHab.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelNumHab.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabelNumHab.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelNumHab.setText("Numero de Habitacion:");
-        getContentPane().add(jLabelNumHab, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
-
-        jTextFieldHabitacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldHabitacionActionPerformed(evt);
-            }
-        });
-        jTextFieldHabitacion.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextFieldHabitacionKeyPressed(evt);
-            }
-        });
-        getContentPane().add(jTextFieldHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 70, 30));
-
-        jLabel2.setBackground(new java.awt.Color(102, 102, 102));
-        jLabel2.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Check Out");
-        jLabel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 130, 50));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logomed.jpg"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 60, 50));
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Corroborar datos");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, -1, -1));
-
-        jTable1.setBackground(new java.awt.Color(0, 0, 0));
-        jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTable1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(255, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Estado", "Nombre", "Piso", "Personas", "Costo", "Tipo", "S.Carro", "S.Antro", "S.Tintoreria", "S.Niñera", "S.Spa", "S.Bar", "S.aCuarto"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 730, 50));
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Fecha de ingreso:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
+        jLabel1.setText("Check out");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, -1, -1));
 
-        jTextFieldFechaIngreso.setEditable(false);
-        getContentPane().add(jTextFieldFechaIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 80, 30));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logominiatura.jpg"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Fecha Salida:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Numero de Habitacion:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 100, -1));
 
-        jTextFieldFechaSalida.setEditable(false);
-        getContentPane().add(jTextFieldFechaSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 80, 30));
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Dias a cobrar:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
-
-        jTextFieldTotalDias.setEditable(false);
-        getContentPane().add(jTextFieldTotalDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 40, -1));
-
-        jTextArea1.setBackground(new java.awt.Color(153, 153, 153));
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
-
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 350, 210));
-
-        fondoPantalla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondonegro.jpg"))); // NOI18N
-        getContentPane().add(fondoPantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 525));
+        FondoPantalla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondonegro.jpg"))); // NOI18N
+        getContentPane().add(FondoPantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextFieldHabitacionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldHabitacionKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldHabitacionKeyPressed
-
-    private void jTextFieldHabitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHabitacionActionPerformed
-        // TODO add your handling code here:
-        String fechasalida,fechaingreso;
-         String query="select * from habitacion where numero='"+Integer.parseInt(this.jTextFieldHabitacion.getText().trim())+"'";
-         this.conn.Consult(query);
-         int n=0;
-         try{
-            this.conn.rs.last();
-            n=this.conn.rs.getRow();
-            this.conn.rs.first();
-        }catch(Exception e){
-            System.out.println("Error#1...");
-        }
-        if(n != 0){
-            System.out.println("n " + n);
-            Object datos[][] = new Object[1][14];
-                try{
-                    
-                    if(this.conn.rs.getBoolean(2)){
-                            datos[0][0]=String.format("ocupada");
-                        }else{
-                            datos[0][0]=String.format("desocupada");
-                        }
-                    ;
-                    datos[0][1]=this.conn.rs.getString(14);
-                    datos[0][2]=this.conn.rs.getInt(13);
-                    datos[0][3]=this.conn.rs.getInt(12);
-                    datos[0][4]=this.conn.rs.getInt(11);
-                    datos[0][5]=this.conn.rs.getInt(10);
-                    if(this.conn.rs.getBoolean(9)){
-                            datos[0][6]=String.format("SI");
-                        }else{
-                            datos[0][6]=String.format("NO");
-                        }
-                    if(this.conn.rs.getBoolean(9)){
-                            datos[0][7]=String.format("SI");
-                        }else{
-                            datos[0][7]=String.format("NO");
-                        }
-                     if(this.conn.rs.getBoolean(7)){
-                            datos[0][8]=String.format("SI");
-                        }else{
-                            datos[0][8]=String.format("NO");
-                        }
-                     if(this.conn.rs.getBoolean(6)){
-                            datos[0][9]=String.format("SI");
-                        }else{
-                            datos[0][9]=String.format("NO");
-                        }
-                     if(this.conn.rs.getBoolean(5)){
-                            datos[0][10]=String.format("SI");
-                        }else{
-                            datos[0][10]=String.format("NO");
-                        }
-                     if(this.conn.rs.getBoolean(4)){
-                            datos[0][11]=String.format("SI");
-                        }else{
-                            datos[0][11]=String.format("NO");
-                        }
-                     if(this.conn.rs.getBoolean(3)){
-                            datos[0][12]=String.format("SI");
-                        }else{
-                            datos[0][12]=String.format("NO");
-                        }
-                  this.jTextFieldFechaIngreso.setText(""+this.conn.rs.getString(16));
-                   this.jTextFieldFechaSalida.setText(""+this.conn.rs.getString(17));
-                    
-                    
-                    this.conn.rs.next();
-                }
-               catch(Exception e){
-                    System.out.println("Error#2..."+e.getMessage());
-                }
-                
-            
-            String columnas[]={"Estado","Nombre","Piso","Personas","Costo",
-                "Tipo","S.Carro","S.Antro","S.Tintoreria","S.Niñera","S.Spa","S.Bar","S.aCuarto"};
-            jTable1.setModel(new DefaultTableModel(datos,columnas));
-            System.out.println("tabla lista");
-        }
-        else{
-            JOptionPane.showMessageDialog(this,"No existe ese dato");   
-                }
-        
-     String cadena="";
-         
-         try{
-            this.conn.Consult(query);
-        }catch(Exception ex){
-            System.err.println("errrr");
-        }
-         
-        try{
-            this.conn.rs.last();
-            n=this.conn.rs.getRow();
-            this.conn.rs.first();
-            if(n>0){
-                 cadena+=String.format("%40s  \n", "FACTURA ");
-                     
-                        cadena+=String.format("Numero: %-40s \n",this.conn.rs.getInt(1));
-                        cadena+=String.format("Nombre: %-40s \n",this.conn.rs.getString(14));
-                        cadena+=String.format("Ciudad origen: %-40s \n",this.conn.rs.getString(15));
-                        cadena+=String.format("Fecha de ingreso: %-40s \n",this.conn.rs.getString(16));
-                        cadena+=String.format("Fecha de salida: %-40s \n",this.conn.rs.getString(17));
-                        cadena+=String.format("Tipo: %-40s \n",this.conn.rs.getInt(10));
-                        cadena+=String.format("Costo: %-40.3f \n ",this.conn.rs.getDouble(11));
-                        //cadena+=String.format("Dias en estancia: %-40.3f \n");
-                        //cadena+=String.format("Total sin Cargos: %-40.3f \n");
-                        //cadena+=String.format("Total con Cargos: %-40.3f \n");
-                        
-                         if(this.conn.rs.getBoolean(3)){
-                            cadena+=String.format("Servicio al cuarto: %-40s \n","$140");
-                             
-                        }
-                         if(this.conn.rs.getBoolean(4)){
-                               cadena+=String.format("Servicio al bar: %-40s \n","$100");
-                         }
-                         
-                          if(this.conn.rs.getBoolean(5)){
-                              cadena+=String.format("Servicio spa: %-40s \n","$240");
-                        
-                          }
-                          
-                           if(this.conn.rs.getBoolean(6)){
-                                cadena+=String.format("Servicio de niñera: %-40s \n","$250");
-                      
-                        
-                          }
-                          if(this.conn.rs.getBoolean(7)){
-                                cadena+=String.format("Servicio de tintoreria: %-40s \n","$120");
-                        
-                          }
-                          
-                          if(this.conn.rs.getBoolean(8)){
-                                cadena+=String.format("Servicio antro: %-40s \n","$200");
-                        
-                          }
-                          
-                           if(this.conn.rs.getBoolean(9)){
-                               cadena+=String.format("Servicio de carro: %-40s \n","$280");
-                        
-                          }
-                       
-                        
-                        
-                        
-                        
-                       
-                      
-                        
-                        this.conn.rs.next();
-       
-                
-            }else{
-               cadena=String.format("%80s\n ", "NO HAY DATOS DISPONIBLES");
-        
-            }
-            
-        }catch (Exception ex){
-            
-           
-        }
-       
-        this.jTextArea1.setText(cadena);
-        
-    
-        
-    }//GEN-LAST:event_jTextFieldHabitacionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -357,21 +91,10 @@ public class Checkout extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel fondoPantalla;
+    private javax.swing.JLabel FondoPantalla;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabelNumHab;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextFieldFechaIngreso;
-    private javax.swing.JTextField jTextFieldFechaSalida;
-    private javax.swing.JTextField jTextFieldHabitacion;
-    private javax.swing.JTextField jTextFieldTotalDias;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
