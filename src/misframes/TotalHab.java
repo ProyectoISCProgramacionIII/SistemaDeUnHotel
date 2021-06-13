@@ -6,6 +6,7 @@
 package misframes;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import misclases.MySqlConn;
 import org.jfree.chart.ChartFactory;
@@ -30,12 +31,20 @@ private MySqlConn conn;
      */
     public TotalHab() {
         initComponents();
+         this.setSize(1020, 640);
+        this.setMinimumSize(new Dimension(1020,640));
+        this.setLocationRelativeTo(null);
+     
     }
 
     public TotalHab(MySqlConn conn) {
         this.conn = conn;
         initComponents();
         mostrarGrafica();
+         this.setSize(1020, 640);
+        this.setMinimumSize(new Dimension(1020,640));
+        this.setLocationRelativeTo(null);
+     
     }
  public void mostrarGrafica(){
         
@@ -49,10 +58,10 @@ private MySqlConn conn;
         JFreeChart graficos=ChartFactory.createBarChart3D("TOTAL DE HABITACIONES", "Tipos de habitacion", "Número de habitaciones", datos, PlotOrientation.VERTICAL, true, true, false);
         ChartPanel mypanel=new ChartPanel(graficos);
         mypanel.setPreferredSize(new Dimension(jPanel1.getSize().width,jPanel1.getSize().height));
-        jPanel1.setLayout(new BorderLayout());
-        jPanel1.add(mypanel,BorderLayout.NORTH);
-        pack();
-        repaint();
+        //jPanel1.setLayout(new BorderLayout());
+        jPanel1.add(mypanel,BorderLayout.CENTER);
+       // pack();
+        //repaint();
     }
      
     
@@ -103,33 +112,57 @@ private MySqlConn conn;
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 301, Short.MAX_VALUE)
-        );
+        jPanel1.setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+        jButton1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Regresa.png"))); // NOI18N
+        jButton1.setText("Regresar");
+        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton1MouseExited(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton1MouseReleased(evt);
+            }
+        });
+        jPanel2.add(jButton1);
+
+        jPanel1.add(jPanel2, java.awt.BorderLayout.PAGE_END);
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+        // TODO add your handling code here:
+        this.jButton1.setBackground(Color.GREEN);
+    }//GEN-LAST:event_jButton1MouseEntered
+
+    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+        // TODO add your handling code here:
+        this.jButton1.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_jButton1MouseExited
+
+    private void jButton1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseReleased
+        // TODO add your handling code here:
+        this.dispose();
+        new MenuConsultas().setVisible(true);
+    }//GEN-LAST:event_jButton1MouseReleased
 
     /**
      * @param args the command line arguments
@@ -167,6 +200,8 @@ private MySqlConn conn;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
