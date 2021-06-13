@@ -7,32 +7,34 @@ package misframes;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.util.Locale;
 import misclases.MySqlConn;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
  * @author elimtzxd
  */
-public class HabPorcentajes extends javax.swing.JFrame {
-    private MySqlConn conn;
-        
-    private int contadors=0, contadord=0, contadort=0;
-    private int sencilla, doble, triple;
-    private double porcentaje[]=new double[3];
-    
+public class OcupacionTotalHab extends javax.swing.JFrame {
+private MySqlConn conn;
+ private double porcentaje[]=new double[2];
+ private int contador=0;
+ private int sencilla, doble, triple, tot;
+
+
     /**
-     * Creates new form HabPorcentajes
+     * Creates new form OcupacionTotalHab
      */
-    public HabPorcentajes() {
+    public OcupacionTotalHab() {
         initComponents();
     }
 
-    public HabPorcentajes(MySqlConn conn) {
+    public OcupacionTotalHab(MySqlConn conn) {
         this.conn = conn;
         initComponents();
         mostrarGrafica();
@@ -42,20 +44,19 @@ public class HabPorcentajes extends javax.swing.JFrame {
         ConsultaHab();
         ConsultaTotalHab();
         CalcularPorcentaje();
+        DefaultPieDataset datos= new DefaultPieDataset();
+        datos.setValue("Porcentaje de habitaciones ocupadas del hotel", this.porcentaje[0]);
+        datos.setValue("Porcentaje de habitaciones desocupadas del hotel",this.porcentaje[1]);
         
-        
-        DefaultCategoryDataset datos= new DefaultCategoryDataset();
-        datos.addValue(this.porcentaje[0], "Sencilla", "Sencilla");
-        datos.addValue(this.porcentaje[1], "Doble", "Doble");
-        datos.addValue(this.porcentaje[2], "Triple", "Triple");
-        JFreeChart graficos=ChartFactory.createBarChart3D("PORCENTAJE POR TIPO DE HABITACION", "Tipos de habitacion", "Porcentaje de ocupacion", datos, PlotOrientation.VERTICAL, true, true, false);
+        JFreeChart graficos=ChartFactory.createPieChart3D("PORCENTAJE DE OCUPACION EN TODO EL HOTEL", datos, true, true,false);
         ChartPanel mypanel=new ChartPanel(graficos);
+        mypanel.setMouseWheelEnabled(true);
         mypanel.setPreferredSize(new Dimension(jPanel1.getSize().width,jPanel1.getSize().height));
         jPanel1.setLayout(new BorderLayout());
         jPanel1.add(mypanel,BorderLayout.NORTH);
         pack();
         repaint();
-    }
+}
     
     private void ConsultaHab(){
         String query="select * from habitacion";
@@ -73,13 +74,7 @@ public class HabPorcentajes extends javax.swing.JFrame {
             for (int i = 0; i < n; i++) {
             
                 try{ 
-                    if (this.conn.rs.getInt(10)==1) {
-                        this.contadors++;
-                    }else if(this.conn.rs.getInt(10)==2){
-                        this.contadord++;
-                    }else if(this.conn.rs.getInt(10)==3){
-                        this.contadort++;
-                    }
+                    contador++;
                     this.conn.rs.next();
                    
                     
@@ -90,23 +85,7 @@ public class HabPorcentajes extends javax.swing.JFrame {
             }
     }
     
-    private void CalcularPorcentaje(){
-        
-        this.porcentaje[0]=((double) this.contadors * 100.0)/this.sencilla;
-        this.porcentaje[1]=((double) this.contadord * 100.0)/this.doble;
-        this.porcentaje[2]=((double) this.contadort * 100.0)/this.triple;
-       /* System.out.println(this.porcentaje[0]);
-        System.out.println(this.porcentaje[1]);
-        System.out.println(this.porcentaje[2]);
-        System.out.println(this.contadors);
-        System.out.println(this.contadord);
-        System.out.println(this.contadort);
-        System.out.println(this.sencilla);
-        System.out.println(this.doble);
-        System.out.println(this.triple); */
-    }
-    
-private void ConsultaTotalHab(){
+    private void ConsultaTotalHab(){
     String query="select * from contadoreshab where sencilla='" +9+"'";
         this.conn.Consult(query);
         int n=0;
@@ -122,12 +101,21 @@ private void ConsultaTotalHab(){
                    this.sencilla=conn.rs.getInt(1);
                    this.doble=conn.rs.getInt(2);
                    this.triple=conn.rs.getInt(3);
+                   
                 }catch(Exception e){
                     System.out.println("Error 2");
                 
         }
+                tot=sencilla+doble+triple;
 }    
     
+    
+    private void CalcularPorcentaje(){
+        
+        this.porcentaje[0]=((double) this.contador * 100.0)/this.tot;
+        this.porcentaje[1]=((double) (this.tot-this.contador) * 100.0)/this.tot;
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -146,11 +134,11 @@ private void ConsultaTotalHab(){
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 690, Short.MAX_VALUE)
+            .addGap(0, 450, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 325, Short.MAX_VALUE)
+            .addGap(0, 331, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -184,20 +172,20 @@ private void ConsultaTotalHab(){
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HabPorcentajes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OcupacionTotalHab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HabPorcentajes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OcupacionTotalHab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HabPorcentajes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OcupacionTotalHab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HabPorcentajes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OcupacionTotalHab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HabPorcentajes(new MySqlConn()).setVisible(true);
+                new OcupacionTotalHab(new MySqlConn()).setVisible(true);
             }
         });
     }

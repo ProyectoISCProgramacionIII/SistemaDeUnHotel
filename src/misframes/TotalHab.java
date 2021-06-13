@@ -18,37 +18,35 @@ import org.jfree.data.category.DefaultCategoryDataset;
  *
  * @author elimtzxd
  */
-public class HabPorcentajes extends javax.swing.JFrame {
-    private MySqlConn conn;
+public class TotalHab extends javax.swing.JFrame {
+private MySqlConn conn;
         
     private int contadors=0, contadord=0, contadort=0;
     private int sencilla, doble, triple;
-    private double porcentaje[]=new double[3];
+    private int numerohab[]=new int[3];
     
     /**
-     * Creates new form HabPorcentajes
+     * Creates new form TotalHab
      */
-    public HabPorcentajes() {
+    public TotalHab() {
         initComponents();
     }
 
-    public HabPorcentajes(MySqlConn conn) {
+    public TotalHab(MySqlConn conn) {
         this.conn = conn;
         initComponents();
         mostrarGrafica();
     }
-    
-    public void mostrarGrafica(){
-        ConsultaHab();
-        ConsultaTotalHab();
-        CalcularPorcentaje();
+ public void mostrarGrafica(){
         
+        ConsultaTotalHab();
+        Llenar();
         
         DefaultCategoryDataset datos= new DefaultCategoryDataset();
-        datos.addValue(this.porcentaje[0], "Sencilla", "Sencilla");
-        datos.addValue(this.porcentaje[1], "Doble", "Doble");
-        datos.addValue(this.porcentaje[2], "Triple", "Triple");
-        JFreeChart graficos=ChartFactory.createBarChart3D("PORCENTAJE POR TIPO DE HABITACION", "Tipos de habitacion", "Porcentaje de ocupacion", datos, PlotOrientation.VERTICAL, true, true, false);
+        datos.addValue(this.numerohab[0], "Sencilla", "Sencilla");
+        datos.addValue(this.numerohab[1], "Doble", "Doble");
+        datos.addValue(this.numerohab[2], "Triple", "Triple");
+        JFreeChart graficos=ChartFactory.createBarChart3D("TOTAL DE HABITACIONES", "Tipos de habitacion", "Número de habitaciones", datos, PlotOrientation.VERTICAL, true, true, false);
         ChartPanel mypanel=new ChartPanel(graficos);
         mypanel.setPreferredSize(new Dimension(jPanel1.getSize().width,jPanel1.getSize().height));
         jPanel1.setLayout(new BorderLayout());
@@ -56,58 +54,10 @@ public class HabPorcentajes extends javax.swing.JFrame {
         pack();
         repaint();
     }
+     
     
-    private void ConsultaHab(){
-        String query="select * from habitacion";
-        this.conn.Consult(query);
-        int n=0;
-        
-        try{
-            this.conn.rs.last();
-            n=this.conn.rs.getRow();
-            this.conn.rs.first();
-        }catch(Exception e){
-            System.out.println("Error 1");
-        }
-        if (n!=0) {
-            for (int i = 0; i < n; i++) {
-            
-                try{ 
-                    if (this.conn.rs.getInt(10)==1) {
-                        this.contadors++;
-                    }else if(this.conn.rs.getInt(10)==2){
-                        this.contadord++;
-                    }else if(this.conn.rs.getInt(10)==3){
-                        this.contadort++;
-                    }
-                    this.conn.rs.next();
-                   
-                    
-                }catch(Exception e){
-                    System.out.println("Error 2");
-                }
-            }
-            }
-    }
-    
-    private void CalcularPorcentaje(){
-        
-        this.porcentaje[0]=((double) this.contadors * 100.0)/this.sencilla;
-        this.porcentaje[1]=((double) this.contadord * 100.0)/this.doble;
-        this.porcentaje[2]=((double) this.contadort * 100.0)/this.triple;
-       /* System.out.println(this.porcentaje[0]);
-        System.out.println(this.porcentaje[1]);
-        System.out.println(this.porcentaje[2]);
-        System.out.println(this.contadors);
-        System.out.println(this.contadord);
-        System.out.println(this.contadort);
-        System.out.println(this.sencilla);
-        System.out.println(this.doble);
-        System.out.println(this.triple); */
-    }
-    
-private void ConsultaTotalHab(){
-    String query="select * from contadoreshab where sencilla='" +9+"'";
+    private void ConsultaTotalHab(){
+    String query="select * from contadoreshab where doble='" +11+"'";
         this.conn.Consult(query);
         int n=0;
         try{
@@ -127,8 +77,22 @@ private void ConsultaTotalHab(){
                 
         }
 }    
+    private void Llenar(){
+        
+        this.numerohab[0]= this.sencilla ;
+        this.numerohab[1]=this.doble ;
+        this.numerohab[2]=this.triple;
+       /* System.out.println(this.porcentaje[0]);
+        System.out.println(this.porcentaje[1]);
+        System.out.println(this.porcentaje[2]);
+        System.out.println(this.contadors);
+        System.out.println(this.contadord);
+        System.out.println(this.contadort);
+        System.out.println(this.sencilla);
+        System.out.println(this.doble);
+        System.out.println(this.triple); */
+    }
     
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -146,11 +110,11 @@ private void ConsultaTotalHab(){
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 690, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 325, Short.MAX_VALUE)
+            .addGap(0, 301, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -184,20 +148,20 @@ private void ConsultaTotalHab(){
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HabPorcentajes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TotalHab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HabPorcentajes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TotalHab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HabPorcentajes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TotalHab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HabPorcentajes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TotalHab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HabPorcentajes(new MySqlConn()).setVisible(true);
+                new TotalHab( new MySqlConn()).setVisible(true);
             }
         });
     }
