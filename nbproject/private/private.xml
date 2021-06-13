@@ -3,34 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misclases/PanelLogIn.java</file>
-            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misframes/MenuConsultas.java</file>
-            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misframes/CheckIn.java</file>
-            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misframes/Portada.java</file>
-            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misframes/MenuPrincipal.java</file>
-            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misclases/PanelMenuPrincipal.java</file>
-            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misclases/Hotel.java</file>
-            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misclases/Cliente.java</file>
-            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misclases/PanelCheckIn.java</file>
-            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misframes/LogIn.java</file>
-            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misclases/Fondo.java</file>
-            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misframes/Consulta11Comida.java</file>
-            <file>file:/C:/Users/Cris%20Rivera/Documents/NetBeansProjects/ProyectoISC/src/misclases/PanelEstadoHabitaciones.java</file>
-=======
             <file>file:/C:/Users/Hp/Documents/NetBeansProjects/PROYECTO%20FINAL%20ISC/SistemaDeUnHotel/src/misframes/LogIn.java</file>
             <file>file:/C:/Users/Hp/Documents/NetBeansProjects/PROYECTO%20FINAL%20ISC/SistemaDeUnHotel/src/misframes/Voucher.java</file>
             <file>file:/C:/Users/Hp/Documents/NetBeansProjects/PROYECTO%20FINAL%20ISC/SistemaDeUnHotel/src/misframes/MenuConsultas.java</file>
             <file>file:/C:/Users/Hp/Documents/NetBeansProjects/PROYECTO%20FINAL%20ISC/SistemaDeUnHotel/src/misclases/PanelCheckIn.java</file>
             <file>file:/C:/Users/Hp/Documents/NetBeansProjects/PROYECTO%20FINAL%20ISC/SistemaDeUnHotel/src/misframes/CheckIn.java</file>
             <file>file:/C:/Users/Hp/Documents/NetBeansProjects/PROYECTO%20FINAL%20ISC/SistemaDeUnHotel/src/misframes/Cambios.java</file>
-            <file>file:/C:/Users/Hp/Documents/NetBeansProjects/PROYECTO%20FINAL%20ISC/SistemaDeUnHotel/src/misclases/Habitacion.java</file>
+            <file>file:/C:/Users/Hp/Documents/NetBeansProjects/PROYECTO%20FINAL%20ISC/SistemaDeUnHotel/src/misframes/Consulta7.java</file>
             <file>file:/C:/Users/Hp/Documents/NetBeansProjects/PROYECTO%20FINAL%20ISC/SistemaDeUnHotel/src/misframes/Consulta10ListaPersonas.java</file>
             <file>file:/C:/Users/Hp/Documents/NetBeansProjects/PROYECTO%20FINAL%20ISC/SistemaDeUnHotel/src/misframes/Portada.java</file>
             <file>file:/C:/Users/Hp/Documents/NetBeansProjects/PROYECTO%20FINAL%20ISC/SistemaDeUnHotel/src/misframes/ConsultaIngresos.java</file>
             <file>file:/C:/Users/Hp/Documents/NetBeansProjects/PROYECTO%20FINAL%20ISC/SistemaDeUnHotel/src/misclases/PanelEstadoHabitaciones.java</file>
-            <file>file:/C:/Users/Hp/Documents/NetBeansProjects/PROYECTO%20FINAL%20ISC/SistemaDeUnHotel/src/misclases/MySqlConn.java</file>
             <file>file:/C:/Users/Hp/Documents/NetBeansProjects/PROYECTO%20FINAL%20ISC/SistemaDeUnHotel/src/misclases/PanelRegCliente.java</file>
+            <file>file:/C:/Users/Hp/Documents/NetBeansProjects/PROYECTO%20FINAL%20ISC/SistemaDeUnHotel/src/misframes/Consulta11Comida.java</file>
             <file>file:/C:/Users/Hp/Documents/NetBeansProjects/PROYECTO%20FINAL%20ISC/SistemaDeUnHotel/src/misclases/PanelConsultaNombreHuesped.java</file>
             <file>file:/C:/Users/Hp/Documents/NetBeansProjects/PROYECTO%20FINAL%20ISC/SistemaDeUnHotel/src/misframes/ConsultaNombreHuesped.java</file>
             <file>file:/C:/Users/Hp/Documents/NetBeansProjects/PROYECTO%20FINAL%20ISC/SistemaDeUnHotel/src/misclases/Hotel.java</file>
@@ -40,7 +25,6 @@
             <file>file:/C:/Users/Hp/Documents/NetBeansProjects/PROYECTO%20FINAL%20ISC/SistemaDeUnHotel/src/misframes/MenuPrincipal.java</file>
             <file>file:/C:/Users/Hp/Documents/NetBeansProjects/PROYECTO%20FINAL%20ISC/SistemaDeUnHotel/src/misclases/PanelMenuPrincipal.java</file>
             <file>file:/C:/Users/Hp/Documents/NetBeansProjects/PROYECTO%20FINAL%20ISC/SistemaDeUnHotel/src/misclases/Cliente.java</file>
->>>>>>> master
         </group>
     </open-files>
 </project-private>
