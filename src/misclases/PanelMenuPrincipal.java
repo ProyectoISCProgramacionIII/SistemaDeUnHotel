@@ -31,6 +31,7 @@ import misframes.EstadoHabitaciones;
 import misframes.MenuPrincipal;
 //=======
 import misframes.CheckIn;
+import misframes.CheckOut;
 import misframes.MenuConsultas;
 //>>>>>>> JuanCarlos3
 
@@ -116,7 +117,9 @@ public class PanelMenuPrincipal extends JPanel{
             //Agregamos eventos 
             jButtonCheckOut.addMouseListener(new MouseAdapter() {
             public void mouseReleased(MouseEvent evt) {
+                cerrarVentana();
                 
+                new CheckOut().setVisible(true);
                 //JOptionPane.showMessageDialog(null, "Hi", "hi", JOptionPane.WARNING_MESSAGE);
                  
             }
