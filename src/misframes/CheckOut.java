@@ -5,6 +5,7 @@
  */
 package misframes;
 
+import java.awt.Dimension;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -41,6 +42,10 @@ public class CheckOut extends javax.swing.JFrame {
         this.conn=new MySqlConn();
         initComponents();
         jButtonGenerarPDF.setEnabled(false);
+        this.setSize(736,480);
+        this.setMinimumSize(new Dimension(736,480));
+        this.setMaximumSize(new Dimension(1020,640));
+        this.setLocationRelativeTo(null);
         
     }
     public static String fechaActual(){
@@ -208,27 +213,31 @@ public class CheckOut extends javax.swing.JFrame {
         FondoPantalla = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Check out");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, -1, -1));
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(260, 10, 159, 44);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logominiatura.jpg"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, -1, -1));
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(430, 20, 30, 30);
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Numero de Habitacion:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(30, 70, 129, 17);
 
         jTextFieldHabitacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldHabitacionActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextFieldHabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 50, -1));
+        getContentPane().add(jTextFieldHabitacion);
+        jTextFieldHabitacion.setBounds(170, 70, 50, 24);
 
         jTable1.setBackground(new java.awt.Color(0, 0, 0));
         jTable1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
@@ -252,37 +261,44 @@ public class CheckOut extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 700, 50));
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(10, 140, 700, 50);
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Fecha de ingreso:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(30, 210, 99, 17);
 
         jTextFieldFechaIngreso.setEditable(false);
         jTextFieldFechaIngreso.setBackground(new java.awt.Color(0, 0, 0));
         jTextFieldFechaIngreso.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jTextFieldFechaIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 80, -1));
+        getContentPane().add(jTextFieldFechaIngreso);
+        jTextFieldFechaIngreso.setBounds(130, 210, 80, 24);
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Fecha de salida:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 254, -1, 30));
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(40, 254, 89, 30);
 
         jTextFieldFechaSalida.setEditable(false);
         jTextFieldFechaSalida.setBackground(new java.awt.Color(0, 0, 0));
         jTextFieldFechaSalida.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jTextFieldFechaSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 80, -1));
+        getContentPane().add(jTextFieldFechaSalida);
+        jTextFieldFechaSalida.setBounds(130, 260, 80, 24);
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Dias a cobrar:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(40, 310, 79, 17);
 
         jTextFieldTotalDias.setEditable(false);
         jTextFieldTotalDias.setBackground(new java.awt.Color(0, 0, 0));
         jTextFieldTotalDias.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jTextFieldTotalDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 40, -1));
+        getContentPane().add(jTextFieldTotalDias);
+        jTextFieldTotalDias.setBounds(130, 310, 40, 24);
 
         jTextArea1.setBackground(new java.awt.Color(0, 0, 0));
         jTextArea1.setColumns(20);
@@ -290,12 +306,14 @@ public class CheckOut extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane2.setViewportView(jTextArea1);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 270, 160));
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(380, 210, 270, 160);
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Corroborar datos");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, -1, -1));
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(180, 110, 97, 17);
 
         jButtonGenerarPDF.setBackground(new java.awt.Color(204, 204, 204));
         jButtonGenerarPDF.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
@@ -306,7 +324,8 @@ public class CheckOut extends javax.swing.JFrame {
                 jButtonGenerarPDFActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonGenerarPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 400, -1, -1));
+        getContentPane().add(jButtonGenerarPDF);
+        jButtonGenerarPDF.setBounds(480, 400, 125, 32);
 
         jButtonRegresar.setBackground(new java.awt.Color(102, 102, 102));
         jButtonRegresar.setForeground(new java.awt.Color(255, 255, 255));
@@ -316,7 +335,8 @@ public class CheckOut extends javax.swing.JFrame {
                 jButtonRegresarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, -1, -1));
+        getContentPane().add(jButtonRegresar);
+        jButtonRegresar.setBounds(40, 400, 83, 32);
 
         jButton1.setBackground(new java.awt.Color(102, 102, 102));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -326,7 +346,8 @@ public class CheckOut extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 103, -1, 30));
+        getContentPane().add(jButton1);
+        jButton1.setBounds(320, 103, 80, 30);
 
         jButtonIngresos.setBackground(new java.awt.Color(0, 0, 0));
         jButtonIngresos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ingresoslogo.jpg"))); // NOI18N
@@ -336,10 +357,12 @@ public class CheckOut extends javax.swing.JFrame {
                 jButtonIngresosActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonIngresos, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 30, 40, 40));
+        getContentPane().add(jButtonIngresos);
+        jButtonIngresos.setBounds(650, 30, 40, 40);
 
         FondoPantalla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondonegro.jpg"))); // NOI18N
-        getContentPane().add(FondoPantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 480));
+        getContentPane().add(FondoPantalla);
+        FondoPantalla.setBounds(0, 0, 734, 480);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
