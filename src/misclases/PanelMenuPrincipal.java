@@ -31,7 +31,7 @@ import misframes.EstadoHabitaciones;
 import misframes.MenuPrincipal;
 //=======
 import misframes.CheckIn;
-import misframes.Checkout;
+import misframes.CheckOut;
 import misframes.MenuConsultas;
 //>>>>>>> JuanCarlos3
 
@@ -119,7 +119,7 @@ public class PanelMenuPrincipal extends JPanel{
             public void mouseReleased(MouseEvent evt) {
                 cerrarVentana();
                 
-                new Checkout().setVisible(true);
+                new CheckOut().setVisible(true);
                 //JOptionPane.showMessageDialog(null, "Hi", "hi", JOptionPane.WARNING_MESSAGE);
                  
             }

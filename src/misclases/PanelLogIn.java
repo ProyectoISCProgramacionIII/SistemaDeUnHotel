@@ -120,7 +120,7 @@ public class PanelLogIn extends JPanel{
         jLabelNombreHot=new JLabel("HOTEL WOLFSBURG");
         jLabelNombreHot.setFont(sizeFont_3);
         jLabelNombreHot.setForeground(Color.ORANGE);
-        jLabelSlogan=new JLabel('"'+"El Arte De Cumplir Tu Más Altas Expectativas"+'"');
+        jLabelSlogan=new JLabel('"'+"El Arte De Cumplir Tus Más Altas Expectativas"+'"');
         jLabelSlogan.setFont(sizeFont_4);
         jLabelSlogan.setForeground(Color.red);
         jTextFieldUsuario=new JTextField("");
