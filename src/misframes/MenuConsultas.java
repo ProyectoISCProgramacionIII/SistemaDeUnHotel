@@ -25,6 +25,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
+import misclases.MySqlConn;
 
 /**
  *
@@ -175,7 +176,8 @@ public class MenuConsultas extends javax.swing.JFrame {
                 
             }
         public void mouseReleased(MouseEvent ev){
-            
+            dispose();
+            new HabPorcentajes(new MySqlConn()).setVisible(true);
         }
         
     });
@@ -202,6 +204,8 @@ public class MenuConsultas extends javax.swing.JFrame {
                 
             }
         public void mouseReleased(MouseEvent ev){
+            dispose();
+            new TotalHab(new MySqlConn()).setVisible(true);
             
         }
         
@@ -230,7 +234,8 @@ public class MenuConsultas extends javax.swing.JFrame {
                 
             }
         public void mouseReleased(MouseEvent ev){
-            
+             dispose();
+            new OcupacionTotalHab(new MySqlConn()).setVisible(true);
         }
         
     });

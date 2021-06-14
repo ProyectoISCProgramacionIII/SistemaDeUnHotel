@@ -114,13 +114,14 @@ public class PanelCheckIn extends JPanel{
         
         int totHab=(int)this.jSpinnerTotalHabi.getValue();
         //se debe validar que los campos importantes deben de ser llenados
-        if(jTextFieldNomHuesped.getText().isEmpty() && jTextFieldCdOrigen.getText().isEmpty() && totHab>0 && totDias>0){
+        if(jTextFieldNomHuesped.getText().isEmpty() || jTextFieldCdOrigen.getText().isEmpty() || totHab<1 || totDias<1){
             JOptionPane.showMessageDialog(this,"Campos Obligatorios NO llenados \nLlene TODOS los campos...","Check In Incorrecto", WARNING_MESSAGE);
             return;
         }else{
             nom=this.jTextFieldNomHuesped.getText();
             fecIng=this.fechaIn;
             cd=this.jTextFieldCdOrigen.getText();
+            
         }
         if(this.jDateChooserEntrada.getDate()==null ){
             JOptionPane.showMessageDialog(this,"Campos Obligatorios NO llenados \nLlene TODOS los campos...","Check In Incorrecto", WARNING_MESSAGE);
@@ -415,7 +416,7 @@ public class PanelCheckIn extends JPanel{
             
             fontt3=Font.createFont(Font.TRUETYPE_FONT, new File("src/fonts/KGHolocene.ttf"));
             fontt3=fontt3.deriveFont(14f);
-            jLabelUbicacion=new JLabel("Av Tlahuac #1784, Colonia Churubusco, Delegación Coyoacan, CDMX");
+            jLabelUbicacion=new JLabel("Zona Dorada #204, Los Cabos San Lucas");
             jLabelUbicacion.setFont(fontt3);
             jLabelUbicacion.setBackground(new Color(102,255,255));
             jLabelUbicacion.setOpaque(true);
@@ -510,9 +511,9 @@ public class PanelCheckIn extends JPanel{
             buttonGroupPersonExtras.add(jRadioButtonNinguno);
             
             
-            jTextFieldNomHuesped = new JTextField("");
+            jTextFieldNomHuesped = new JTextField(/*""*/);
             jTextFieldNomHuesped.setFont(sizeFont_2);
-            jTextFieldCdOrigen = new JTextField("");
+            jTextFieldCdOrigen = new JTextField(/*""*/);
             jTextFieldCdOrigen.setFont(sizeFont_2);
             jTextFieldFechaIngr = new JTextField();
             jTextFieldFechaIngr.setText(fechaIn);
@@ -663,7 +664,7 @@ public class PanelCheckIn extends JPanel{
         this.jLabelFechaIng.setBounds((dimensiones.width/2)-480, (dimensiones.height/2)+170, 160, 30);
         this.jLabelFechaSal.setBounds((dimensiones.width/2)+10, (dimensiones.height/2)-115, 160, 30);
         this.jLabelServicios.setBounds((dimensiones.width/2)+115, (dimensiones.height/2), 130, 30);
-        this.jLabelUbicacion.setBounds((dimensiones.width/2)-180, (dimensiones.height/2)+250, 580, 25);
+        this.jLabelUbicacion.setBounds((dimensiones.width/2)-80, (dimensiones.height/2)+250, 350, 25);
         this.jLabelTotDias.setBounds((dimensiones.width/2)+10, (dimensiones.height/2)-150, 280, 30);
         //JSpinner
         this.jSpinnerTotalHabi.setBounds((dimensiones.width/2)-170, (dimensiones.height/2)-50, 70, 50);
