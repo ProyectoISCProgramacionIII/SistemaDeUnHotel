@@ -117,7 +117,8 @@ public class MenuConsultas extends javax.swing.JFrame {
                 
             }
         public void mouseReleased(MouseEvent ev){
-            
+            dispose();
+            new Consulta1().setVisible(true);
         }
         
     });

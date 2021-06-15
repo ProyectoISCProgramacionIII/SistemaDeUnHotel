@@ -438,7 +438,7 @@ public class Cambios extends javax.swing.JFrame {
                 }else{
                     
                 }
-                String aux2=this.conn.rs.getInt(10)==1?"Sencilla":this.conn.rs.getInt(10)==2?"Doble":"Sencilla";
+                String aux2=this.conn.rs.getInt(10)==1?"Sencilla":this.conn.rs.getInt(10)==2?"Doble":"Triple";
                 this.textfields.get(2).setText(""+aux2);
                 this.textfields.get(3).setText(""+this.conn.rs.getDouble(11));
                  this.textfields.get(4).setText(""+this.conn.rs.getInt(12));
