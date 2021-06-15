@@ -6,6 +6,7 @@
 package misframes;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.File;
@@ -32,6 +33,8 @@ public class Voucher extends javax.swing.JFrame {
         this.jButtonContinuar.setFont(font);
         this.jLabelVoucher.setFont(font1);
         this.setTitle("Voucher Del Check In");
+        this.setSize(605, 690);
+        this.setMinimumSize(new Dimension(605,690));
         this.setLocationRelativeTo(null);
     }
 
@@ -45,6 +48,8 @@ public class Voucher extends javax.swing.JFrame {
         this.jButtonContinuar.setFont(font);
         this.jLabelVoucher.setFont(font1);
         this.setTitle("Voucher Del Check In");
+         this.setSize(605, 680);
+        this.setMinimumSize(new Dimension(605,680));
         this.setLocationRelativeTo(null);
         llenarVoucher();
     }
@@ -122,7 +127,7 @@ public class Voucher extends javax.swing.JFrame {
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(null);
 
         jTextAreaVoucher.setEditable(false);
         jTextAreaVoucher.setColumns(20);
@@ -131,7 +136,8 @@ public class Voucher extends javax.swing.JFrame {
         jTextAreaVoucher.setRows(5);
         jScrollPane1.setViewportView(jTextAreaVoucher);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 460, 380));
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(0, 210, 460, 380);
 
         jButtonContinuar.setBackground(new java.awt.Color(102, 0, 102));
         jButtonContinuar.setForeground(new java.awt.Color(255, 255, 255));
@@ -150,38 +156,47 @@ public class Voucher extends javax.swing.JFrame {
                 jButtonContinuarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonContinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 600, 130, 40));
+        getContentPane().add(jButtonContinuar);
+        jButtonContinuar.setBounds(460, 600, 130, 40);
 
         jLabelLinea1.setBackground(new java.awt.Color(204, 153, 0));
         jLabelLinea1.setOpaque(true);
-        getContentPane().add(jLabelLinea1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 10, 80));
+        getContentPane().add(jLabelLinea1);
+        jLabelLinea1.setBounds(70, 0, 10, 80);
 
         jLabelLinea2.setBackground(new java.awt.Color(153, 102, 0));
         jLabelLinea2.setOpaque(true);
-        getContentPane().add(jLabelLinea2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 80, 10));
+        getContentPane().add(jLabelLinea2);
+        jLabelLinea2.setBounds(0, 70, 80, 10);
 
         jLabelLinea3.setBackground(new java.awt.Color(153, 0, 0));
         jLabelLinea3.setOpaque(true);
-        getContentPane().add(jLabelLinea3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, 180, 10));
+        getContentPane().add(jLabelLinea3);
+        jLabelLinea3.setBounds(420, 70, 180, 10);
 
         jLabelLinea4.setBackground(new java.awt.Color(153, 102, 0));
         jLabelLinea4.setOpaque(true);
-        getContentPane().add(jLabelLinea4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, 30, 160));
+        getContentPane().add(jLabelLinea4);
+        jLabelLinea4.setBounds(470, 140, 30, 160);
 
         jLabelLinea5.setBackground(new java.awt.Color(153, 0, 0));
         jLabelLinea5.setOpaque(true);
-        getContentPane().add(jLabelLinea5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 280, 30, 170));
+        getContentPane().add(jLabelLinea5);
+        jLabelLinea5.setBounds(480, 280, 30, 170);
 
         jLabelLinea6.setBackground(new java.awt.Color(204, 153, 0));
         jLabelLinea6.setOpaque(true);
-        getContentPane().add(jLabelLinea6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 420, 30, 140));
+        getContentPane().add(jLabelLinea6);
+        jLabelLinea6.setBounds(490, 420, 30, 140);
 
         jLabelVoucher.setForeground(new java.awt.Color(204, 153, 0));
         jLabelVoucher.setText("Voucher");
-        getContentPane().add(jLabelVoucher, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 170, 60));
+        getContentPane().add(jLabelVoucher);
+        jLabelVoucher.setBounds(430, 10, 170, 60);
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoVoucher.png"))); // NOI18N
-        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 650));
+        getContentPane().add(jLabelFondo);
+        jLabelFondo.setBounds(0, 0, 600, 640);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
