@@ -116,7 +116,8 @@ public class MenuConsultas extends javax.swing.JFrame {
                 
             }
         public void mouseReleased(MouseEvent ev){
-            
+            dispose();
+            new Galeria().setVisible(true);
         }
         
     });
@@ -175,7 +176,8 @@ public class MenuConsultas extends javax.swing.JFrame {
                 
             }
         public void mouseReleased(MouseEvent ev){
-            
+            dispose();
+            new HabPorcentajes().setVisible(true);
         }
         
     });
@@ -202,7 +204,8 @@ public class MenuConsultas extends javax.swing.JFrame {
                 
             }
         public void mouseReleased(MouseEvent ev){
-            
+            dispose();
+            new TotalHab().setVisible(true);
         }
         
     });
@@ -230,7 +233,8 @@ public class MenuConsultas extends javax.swing.JFrame {
                 
             }
         public void mouseReleased(MouseEvent ev){
-            
+            dispose();
+            new OcupacionTotalHab().setVisible(true);
         }
         
     });
@@ -257,7 +261,8 @@ public class MenuConsultas extends javax.swing.JFrame {
                 
             }
         public void mouseReleased(MouseEvent ev){
-            
+            dispose();
+            new ConsultaPrecios().setVisible(true);
         }
         
     });
