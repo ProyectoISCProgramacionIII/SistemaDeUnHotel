@@ -5,32 +5,14 @@
  */
 package misframes;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
-import java.awt.Graphics;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.SwingUtilities;
 import misclases.Cliente;
 import static misclases.Hotel.habitaciones;
 
@@ -39,148 +21,65 @@ import static misclases.Hotel.habitaciones;
  * @author Hp
  */
 public class Voucher extends javax.swing.JFrame {
-
+    private Font font,font1;
+    private Cliente cliente;
+    private int tipo,pos;
     /**
      * Creates new form Voucher
      */
-    private JTextArea jTextAreaVoucher;
-    private JPanel jPanelBase, jPanelImagen;
-    private JButton jButtonContinuar;
-    private BufferedImage logo;
-    private ImageIcon IconContinuar;
-    private Font font, font2;
-    private Cliente cliente=new Cliente();
-    private int tipo,pos; 
-    
+    public Voucher() {
+        iniciarFonts();
+        initComponents();
+        this.jButtonContinuar.setFont(font);
+        this.jLabelVoucher.setFont(font1);
+        this.setTitle("Voucher Del Check In");
+        this.setSize(605, 690);
+        this.setMinimumSize(new Dimension(605,690));
+        this.setLocationRelativeTo(null);
+    }
+
     public Voucher(Cliente cliente, int ti, int posi) {
         this.cliente = cliente;
-        this.tipo=ti;
-        this.pos=posi;
+        this.tipo = ti;
+        this.pos = posi;
+        
+        iniciarFonts();
         initComponents();
-        
-        this.setTitle("Voucher Del Cliente");
-        this.setMinimumSize(new Dimension(700,700));
-        iniciarPaneles();
-        iniciarComponentes();
-        this.getContentPane().add(this.jPanelBase, BorderLayout.CENTER);
+        this.jButtonContinuar.setFont(font);
+        this.jLabelVoucher.setFont(font1);
+        this.setTitle("Voucher Del Check In");
+         this.setSize(605, 680);
+        this.setMinimumSize(new Dimension(605,680));
         this.setLocationRelativeTo(null);
-        this.setSize(700, 700);
-    }
-    
-    public Voucher() {
-        initComponents();
-        
-        this.setTitle("Voucher Del Cliente");
-        this.setMinimumSize(new Dimension(700,700));
-        iniciarPaneles();
-        iniciarComponentes();
-        this.getContentPane().add(this.jPanelBase, BorderLayout.CENTER);
-        this.setLocationRelativeTo(null);
-        this.setSize(700, 700);
-        
-    }
-    
-    private void iniciarPaneles(){
-        try {
-            font2=Font.createFont(Font.TRUETYPE_FONT, new File("src/fonts/Catskin.otf"));
-            font2=font2.deriveFont(18f);
-            IconContinuar=new ImageIcon("src/imagenes/Continuar.png");
-        
-        } catch (FontFormatException ex) {
-            Logger.getLogger(Voucher.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Voucher.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        jPanelBase=new JPanel(){
-            @Override
-                public void paint(Graphics g){
-                    Dimension dimensiones=getSize();
-                    
-
-                    g.drawString("VOUCHER", dimensiones.width/2-50,10);
-                    
-                    super.paint(g);
-                }
-        };
-        jPanelBase.setOpaque(true);
-        this.jPanelBase.setBackground(new Color(255,255,102));
-        Dimension dim=this.jPanelBase.getSize();
-        jPanelImagen=new JPanel(){
-            @Override
-                public void paint(Graphics g){
-                    Dimension dimensiones=getSize();
-                    try {
-                        logo=ImageIO.read(new File("src/imagenes/hotel.jpg"));
-                    } catch (IOException ex) {
-                        Logger.getLogger(Voucher.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                    g.drawImage(logo,0, 0,dimensiones.width,dimensiones.height, null);
-                    
-                    super.paint(g);
-                }
-        };
-        
-        font=new Font("Consolas", 1, 15);
-        jButtonContinuar=new JButton("Continuar",IconContinuar);
-        jButtonContinuar.setFont(font2);
-        jButtonContinuar.setBounds((dim.width/2)-80, (dim.height/2)-120, 150, 38);
-        jButtonContinuar.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        jButtonContinuar.setFocusable(false);
-        jButtonContinuar.setBackground(Color.PINK);
-        jButtonContinuar.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseEntered(MouseEvent ev){
-                jButtonContinuar.setBackground(Color.GREEN);
-            }
-            public void mouseExited(MouseEvent ev){
-                jButtonContinuar.setBackground(Color.PINK);
-            }
-            public void mouseReleased(MouseEvent evt){
-                cerrarVentana();
-            }
-
-        });
-        
-        this.jPanelImagen.setPreferredSize(new Dimension(300,200));
-        this.jPanelImagen.setOpaque(false);
-        this.jPanelImagen.setBounds((dim.width/2)+250, (dim.height/2)-340, 300, 200);
-        this.jTextAreaVoucher=new JTextArea();
-        this.jTextAreaVoucher.setEditable(false);
-        this.jTextAreaVoucher.setPreferredSize(new Dimension(600,400));
-        this.jTextAreaVoucher.setBounds((dim.width/2)-345,(dim.height)-150, 600, 600);
-        this.jTextAreaVoucher.setFont(font);
-        this.jTextAreaVoucher.setBackground(new Color(255,255,153));
-        this.jTextAreaVoucher.setForeground(new Color(0,0,153));
         llenarVoucher();
     }
     
+    
     private void llenarVoucher(){
-        
+        String t="";
         System.out.println("Fecha Ingreso: "+cliente.getFechaIng()+"   Fecha Salida: "+cliente.getFechaSal());
-        String hotel="\t\t\t HOTEL WOLFSBURG\n";
-        String lema="\t\tEl Arte De Cumplir Tu Más Altas Expectativas\n";
-        String ubicacion="     Av Tlahuac #1784, Colonia Churubusco, Delegación Coyoacan, CDMX\n\n\n";
-        String nombre="Nombre del huesped: "+cliente.getNomHuesped()+"\n\n";
-        String cdOrigen="Ciudad de Origen: "+cliente.getCdOrigen()+"\n\n";
-        String fechaIn="Fecha de Ingreso: "+cliente.getFechaIng()+"\n\n";
-        String fechaSal="Fechas de Salida: "+cliente.getFechaSal()+"\n\n";
+        String hotel="\t\t HOTEL WOLFSBURG\n";
+        String lema="\t El Arte De Cumplir Tu Más Altas Expectativas\n";
+        String ubicacion="\t Zona Dorada #204, Los Cabos San Lucas\n\n\n";
+        String nombre="Nombre del huesped: "+cliente.getNomHuesped()+"\n";
+        String cdOrigen="Ciudad de Origen: "+cliente.getCdOrigen()+"\n";
+        String fechaIn="Fecha de Ingreso: "+cliente.getFechaIng()+"\n";
+        String fechaSal="Fechas de Salida: "+cliente.getFechaSal()+"\n";
         String numeroHab="Número de Habitación: "+habitaciones.get(pos).getNumero();
-        String piso="   Piso: "+habitaciones.get(pos).getPiso()+"\n\n";
-        String tipo="Tipo de Habitación: Tipo "+habitaciones.get(pos).getTipo();
+        String piso="   Piso: "+habitaciones.get(pos).getPiso()+"\n";
         int lim=0,extra=0;
         if(habitaciones.get(pos).getTipo()==1){
-            lim=3;
+            lim=3; t="Sencilla";
         }else if(habitaciones.get(pos).getTipo()==2){
-            lim=4;
+            lim=4; t="Doble";
         }else if(habitaciones.get(pos).getTipo()==3){
-            lim=5;
+            lim=5; t="Triple";
         }
-        tipo+="  ( Limite "+lim+" huésped(es) )\n\n";
+        String tipo="Tipo de Habitación: "+t;
+        
+        tipo+="  ( Limite "+lim+" huésped(es) )\n";
         String totOcupantes="Total de ocupantes de la habitación: "+cliente.getTotOcupantes();
-        String extraPer="  Tiene "+cliente.getPersonasExtr()+" Personas Extra";
+        String extraPer="\nTiene "+cliente.getPersonasExtr()+" Personas Extra";
         
         String regCompleto="\n\nRegistro Completo";
         String info=hotel+lema+ubicacion+nombre+cdOrigen+fechaIn+fechaSal+
@@ -188,18 +87,24 @@ public class Voucher extends javax.swing.JFrame {
         this.jTextAreaVoucher.setText(info);
     }
     
+    private void iniciarFonts(){
+        try {
+            font=Font.createFont(Font.TRUETYPE_FONT, new File("src/fonts/Catskin.otf"));
+            font=font.deriveFont(19f);
+            font1=Font.createFont(Font.TRUETYPE_FONT, new File("src/fonts/Rose Cake.otf"));
+            font1=font1.deriveFont(55f);
+        } catch (FontFormatException ex) {
+            Logger.getLogger(Voucher.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Voucher.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     private void cerrarVentana(){
         this.dispose();
         new MenuPrincipal().setVisible(true);
     }
     
-    private void iniciarComponentes(){
-        
-        this.jPanelBase.add(this.jPanelImagen);
-        this.jPanelBase.add(this.jTextAreaVoucher);
-        this.jPanelBase.add(this.jButtonContinuar);
-        
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -209,10 +114,107 @@ public class Voucher extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextAreaVoucher = new javax.swing.JTextArea();
+        jButtonContinuar = new javax.swing.JButton();
+        jLabelLinea1 = new javax.swing.JLabel();
+        jLabelLinea2 = new javax.swing.JLabel();
+        jLabelLinea3 = new javax.swing.JLabel();
+        jLabelLinea4 = new javax.swing.JLabel();
+        jLabelLinea5 = new javax.swing.JLabel();
+        jLabelLinea6 = new javax.swing.JLabel();
+        jLabelVoucher = new javax.swing.JLabel();
+        jLabelFondo = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
+
+        jTextAreaVoucher.setEditable(false);
+        jTextAreaVoucher.setColumns(20);
+        jTextAreaVoucher.setFont(new java.awt.Font("Consolas", 1, 15)); // NOI18N
+        jTextAreaVoucher.setForeground(new java.awt.Color(153, 102, 0));
+        jTextAreaVoucher.setRows(5);
+        jScrollPane1.setViewportView(jTextAreaVoucher);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(0, 210, 460, 380);
+
+        jButtonContinuar.setBackground(new java.awt.Color(102, 0, 102));
+        jButtonContinuar.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonContinuar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Continuar.png"))); // NOI18N
+        jButtonContinuar.setText("Continuar");
+        jButtonContinuar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButtonContinuarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButtonContinuarMouseExited(evt);
+            }
+        });
+        jButtonContinuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonContinuarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonContinuar);
+        jButtonContinuar.setBounds(460, 600, 130, 40);
+
+        jLabelLinea1.setBackground(new java.awt.Color(204, 153, 0));
+        jLabelLinea1.setOpaque(true);
+        getContentPane().add(jLabelLinea1);
+        jLabelLinea1.setBounds(70, 0, 10, 80);
+
+        jLabelLinea2.setBackground(new java.awt.Color(153, 102, 0));
+        jLabelLinea2.setOpaque(true);
+        getContentPane().add(jLabelLinea2);
+        jLabelLinea2.setBounds(0, 70, 80, 10);
+
+        jLabelLinea3.setBackground(new java.awt.Color(153, 0, 0));
+        jLabelLinea3.setOpaque(true);
+        getContentPane().add(jLabelLinea3);
+        jLabelLinea3.setBounds(420, 70, 180, 10);
+
+        jLabelLinea4.setBackground(new java.awt.Color(153, 102, 0));
+        jLabelLinea4.setOpaque(true);
+        getContentPane().add(jLabelLinea4);
+        jLabelLinea4.setBounds(470, 140, 30, 160);
+
+        jLabelLinea5.setBackground(new java.awt.Color(153, 0, 0));
+        jLabelLinea5.setOpaque(true);
+        getContentPane().add(jLabelLinea5);
+        jLabelLinea5.setBounds(480, 280, 30, 170);
+
+        jLabelLinea6.setBackground(new java.awt.Color(204, 153, 0));
+        jLabelLinea6.setOpaque(true);
+        getContentPane().add(jLabelLinea6);
+        jLabelLinea6.setBounds(490, 420, 30, 140);
+
+        jLabelVoucher.setForeground(new java.awt.Color(204, 153, 0));
+        jLabelVoucher.setText("Voucher");
+        getContentPane().add(jLabelVoucher);
+        jLabelVoucher.setBounds(430, 10, 170, 60);
+
+        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoVoucher.png"))); // NOI18N
+        getContentPane().add(jLabelFondo);
+        jLabelFondo.setBounds(0, 0, 600, 640);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonContinuarActionPerformed
+        // TODO add your handling code here:
+        cerrarVentana();
+    }//GEN-LAST:event_jButtonContinuarActionPerformed
+
+    private void jButtonContinuarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonContinuarMouseEntered
+        // TODO add your handling code here:
+        this.jButtonContinuar.setBackground(new Color(153,102,0));
+    }//GEN-LAST:event_jButtonContinuarMouseEntered
+
+    private void jButtonContinuarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonContinuarMouseExited
+        // TODO add your handling code here:
+        this.jButtonContinuar.setBackground(new Color(102,0,102));
+    }//GEN-LAST:event_jButtonContinuarMouseExited
 
     /**
      * @param args the command line arguments
@@ -250,6 +252,16 @@ public class Voucher extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonContinuar;
+    private javax.swing.JLabel jLabelFondo;
+    private javax.swing.JLabel jLabelLinea1;
+    private javax.swing.JLabel jLabelLinea2;
+    private javax.swing.JLabel jLabelLinea3;
+    private javax.swing.JLabel jLabelLinea4;
+    private javax.swing.JLabel jLabelLinea5;
+    private javax.swing.JLabel jLabelLinea6;
+    private javax.swing.JLabel jLabelVoucher;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextAreaVoucher;
     // End of variables declaration//GEN-END:variables
-
 }

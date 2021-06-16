@@ -196,7 +196,7 @@ public class Consulta9 extends javax.swing.JFrame {
 
     private void agregaTabla(int num){
         
-        new Hotel();
+
         String query="select * from habitacion where piso='"+num+"'";
         
         try{
