@@ -212,13 +212,17 @@ public class PanelEstadoHabitaciones extends JPanel{
             n=this.conn.rs.getRow();
             this.conn.rs.first();
             if(n>0){
-                
+                for (int j = 0; j < Hotel.habitaciones.size(); j++) {
+                    Hotel.habitaciones.get(j).setEstado(false);
+                    
+                }
                 for (int j = 0; j < n; j++) {
                     
                     
-                    pos=this.conn.rs.getInt(18);
-                    Hotel.habitaciones.get(pos).setEstado(true);
-                    this.conn.rs.next();
+                        pos=this.conn.rs.getInt(18);
+                        Hotel.habitaciones.get(pos).setEstado(true);
+                        this.conn.rs.next();
+                 
                     
                 }
                 

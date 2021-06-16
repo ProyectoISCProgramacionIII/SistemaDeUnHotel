@@ -236,6 +236,11 @@ public class CheckOut extends javax.swing.JFrame {
                 jTextFieldHabitacionActionPerformed(evt);
             }
         });
+        jTextFieldHabitacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldHabitacionKeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextFieldHabitacion);
         jTextFieldHabitacion.setBounds(170, 70, 50, 24);
 
@@ -494,7 +499,7 @@ public class CheckOut extends javax.swing.JFrame {
             this.conn.rs.first();
             if(n>0){
                  cadena+=String.format("%40s  \n", "FACTURA ");
-                        cadena+=String.format("Fecha: %s /n",fechaActual());
+                        cadena+=String.format("Fecha: %s \n",fechaActual());
                         cadena+=String.format("Numero: %-40s \n",this.conn.rs.getInt(1));
                         cadena+=String.format("Nombre: %-40s \n",this.conn.rs.getString(14));
                         cadena+=String.format("Ciudad origen: %-40s \n",this.conn.rs.getString(15));
@@ -629,6 +634,15 @@ public class CheckOut extends javax.swing.JFrame {
     JOptionPane.showMessageDialog(this,"Facturas Totales :"+totalfacturas+"\n Total ingresos :"+mostraringresos,"Ingresos",PLAIN_MESSAGE);       
         
     }//GEN-LAST:event_jButtonIngresosActionPerformed
+
+    private void jTextFieldHabitacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldHabitacionKeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar();
+        if(c<'0'||c>'9'){
+
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldHabitacionKeyTyped
 
     /**
      * @param args the command line arguments

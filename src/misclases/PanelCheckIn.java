@@ -139,7 +139,7 @@ public class PanelCheckIn extends JPanel{
         entrada=Calendar.getInstance();
         entrada.setTime(fechasEntr);
         entrada.add(Calendar.DAY_OF_YEAR, totDias);
-        if(entrada.get(2)==1 && entrada.get(5)>=27){/*este id se hizo dado
+        if(entrada.get(2)==11 && entrada.get(5)>=27){/*este id se hizo dado
             //que al llegar al 27 de diciembre aumentaba el año entonces para arreglarlo
             eso ocurria en cualquier año por ello hice este if y me disminu ye un año*/
             entrada.add(Calendar.YEAR, -1);
@@ -410,7 +410,7 @@ public class PanelCheckIn extends JPanel{
             jLabelTotDias.setFont(fontt);
             jLabelTotDias.setForeground(new Color(240,240,240));
             
-            jLabelTotalOcu = new JLabel("Total de Ocupantes de la Habitcion: ");
+            jLabelTotalOcu = new JLabel("Total de Ocupantes de la Habitacion: ");
             jLabelTotalOcu.setFont(fontt);
             jLabelTotalOcu.setForeground(new Color(102,255,102));
             
@@ -439,9 +439,8 @@ public class PanelCheckIn extends JPanel{
 
                 }
                 public void mouseReleased(MouseEvent evt){
-                    cerrarVentana();
-                    new EstadoHabitaciones().setVisible(true);
-                }
+                    cerrar();
+                   }
 
             });
             
@@ -542,7 +541,7 @@ public class PanelCheckIn extends JPanel{
             
             jCheckBoxServAntro = new JCheckBox();
             jCheckBoxServAntro.setFont(sizeFont_3);
-            jCheckBoxServAntro.setText("Servico de Antro");
+            jCheckBoxServAntro.setText("Servicio de Antro");
                     
             jCheckBoxServBar = new JCheckBox();
             jCheckBoxServBar.setFont(sizeFont_3);
@@ -629,7 +628,7 @@ public class PanelCheckIn extends JPanel{
             entrada=Calendar.getInstance();
             entrada.setTime(fechasEntr);
             entrada.add(Calendar.DAY_OF_YEAR, totDias);
-            if(entrada.get(2)==1 && entrada.get(5)>=27){/*este id se hizo dado
+            if(entrada.get(2)==11 && entrada.get(5)>=27){/*este id se hizo dado
                 //que al llegar al 27 de diciembre aumentaba el año entonces para arreglarlo
                 eso ocurria en cualquier año por ello hice este if y me disminu ye un año*/
                 entrada.add(Calendar.YEAR, -1);
