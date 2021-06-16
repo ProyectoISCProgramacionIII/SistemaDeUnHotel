@@ -118,7 +118,9 @@ public class MenuConsultas extends javax.swing.JFrame {
             }
         public void mouseReleased(MouseEvent ev){
             dispose();
-            new Consulta1().setVisible(true);
+
+            new Galeria().setVisible(true);
+
         }
         
     });
@@ -178,7 +180,9 @@ public class MenuConsultas extends javax.swing.JFrame {
             }
         public void mouseReleased(MouseEvent ev){
             dispose();
+
             new HabPorcentajes(new MySqlConn()).setVisible(true);
+
         }
         
     });
@@ -206,8 +210,12 @@ public class MenuConsultas extends javax.swing.JFrame {
             }
         public void mouseReleased(MouseEvent ev){
             dispose();
+
             new TotalHab(new MySqlConn()).setVisible(true);
             
+
+          
+
         }
         
     });
@@ -235,8 +243,10 @@ public class MenuConsultas extends javax.swing.JFrame {
                 
             }
         public void mouseReleased(MouseEvent ev){
+
              dispose();
             new OcupacionTotalHab(new MySqlConn()).setVisible(true);
+
         }
         
     });
@@ -264,8 +274,9 @@ public class MenuConsultas extends javax.swing.JFrame {
             }
         public void mouseReleased(MouseEvent ev){
             dispose();
-            new Consulta6().setVisible(true);
-            
+
+            new ConsultaPrecios().setVisible(true);
+
         }
         
     });
