@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-06-2021 a las 21:46:17
+-- Tiempo de generación: 16-06-2021 a las 04:39:55
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.5
 
@@ -56,15 +56,20 @@ CREATE TABLE `habitacion` (
 
 INSERT INTO `habitacion` (`numero`, `estado`, `servcuarto`, `servbar`, `servspa`, `servninera`, `servtintoreria`, `servantro`, `servcarro`, `tipo`, `costo`, `totpersonas`, `piso`, `nombre`, `cdorigen`, `fechaingreso`, `fechasalida`, `pos`, `totDias`, `personasExtr`) VALUES
 (102, 1, 1, 1, 0, 0, 0, 1, 1, 1, 500, 3, 1, 'Juan Carlos Alonso', 'Ciudad De México', '2021-06-27', '2021-06-30', 2, 3, 2),
+(103, 1, 0, 0, 1, 0, 0, 0, 0, 1, 500, 1, 1, 'Luis enrique', 'Guadalajara', '2021-06-06', '2021-06-10', 3, 4, 0),
 (104, 1, 1, 0, 1, 0, 0, 1, 0, 1, 500, 1, 1, 'Cristobal rivera', 'Aguascalientes', '2021-06-04', '2021-06-19', 4, 15, 0),
 (105, 1, 1, 0, 0, 1, 0, 1, 1, 1, 500, 2, 1, 'Alicia Huerta', 'AGS', '2021-06-22', '2021-06-24', 5, 2, 1),
+(107, 1, 0, 1, 0, 1, 0, 0, 0, 2, 1000, 2, 1, 'Raquel Martinez', 'Yucatan', '2021-06-05', '2021-06-13', 7, 8, 0),
 (200, 1, 0, 0, 0, 0, 0, 1, 0, 1, 500, 2, 2, 'Alexander Marquez', 'Guadalajara', '2021-06-06', '2021-06-11', 15, 5, 1),
 (201, 1, 1, 0, 0, 0, 0, 0, 1, 1, 500, 1, 2, 'Flor Hernandez', 'Aguascalientes', '2021-06-04', '2021-06-14', 16, 10, 0),
 (203, 1, 1, 0, 0, 1, 0, 0, 1, 1, 500, 1, 2, 'Arturo Vazques', 'Guanajuato', '2021-06-05', '2021-06-09', 18, 4, 0),
+(204, 1, 0, 0, 1, 0, 0, 0, 0, 2, 1000, 2, 2, 'Nicolas', 'Guatemala', '2021-06-06', '2021-06-14', 19, 8, 0),
 (205, 1, 0, 1, 0, 0, 0, 1, 1, 1, 500, 3, 2, 'Abel Diaz Moreno', 'Zacatecas', '2021-06-01', '2021-06-02', 20, 1, 2),
-(207, 1, 1, 0, 0, 0, 0, 0, 1, 2, 1000, 2, 2, 'Julian Vasquez', 'San Luis Potosi', '2021-06-05', '2021-06-20', 22, 15, 0),
+(206, 1, 0, 1, 0, 0, 0, 0, 0, 2, 1000, 2, 2, 'Eduardo Gonzales ', 'Durango', '2021-06-06', '2021-06-10', 21, 4, 0),
+(207, 1, 0, 0, 0, 0, 0, 1, 0, 2, 1000, 2, 2, 'Alonso Arrollo', 'Hidalgo', '2021-06-06', '2021-06-20', 22, 14, 0),
 (208, 1, 0, 1, 1, 1, 1, 1, 1, 2, 1000, 2, 2, 'Heriberto Martinez', 'Puebla', '2021-06-18', '2021-06-19', 23, 1, 0),
-(209, 1, 1, 0, 0, 0, 0, 0, 0, 3, 1500, 1, 2, 'Maria Clara Duarte Herrera', 'Mazatlan', '2021-05-06', '2021-05-21', 24, 15, 0);
+(209, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1500, 3, 2, 'Maria Clara Duarte Huerta', 'Mazatlan', '2021-05-06', '2021-05-21', 24, 15, 0),
+(214, 1, 1, 0, 0, 1, 0, 1, 0, 3, 1500, 3, 2, 'Jesus Antonio Baldonado', 'Queretaro MX', '2021-06-05', '2021-06-11', 29, 6, 0);
 
 --
 -- Índices para tablas volcadas
